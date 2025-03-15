@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Encoder Interactive Test</title>
+  </head>
+
+  <style>
+    :root {
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    button.signal {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .character {
+      display: inline-block;
+      border: 1px solid black;
+      padding: 1rem;
+    }
+  </style>
+
+  <body>
+    <main>
+        <h1>Encoder Interactive Test</h1>
+
+        <button
+          class="signal"
+          type="button"
+          onmousedown="morseEncoder.signalOn();"
+          onmouseup="morseEncoder.signalOff();"
+        >
+          Signal
+        </button>
+
+        <div>
+          <strong>Character</strong>
+          <code id="character" style="display: block;">
+          </code>
+        </div>
+
+        <div>
+          <strong>Word</strong>
+          <code id="word" style="display: block;">
+          </code>
+        </div>
+
+        <div>
+          <strong>Words</strong>
+          <code id="words" style="display: block;">
+          </code>
+        </div>
+    </main>
+  </body>
+
+  <script type="module">
+    import MorseEncoder from './morse/encoder.mjs';
+
+    const wordsPerMinute = 5;
+    const morseEncoder = MorseEncoder.build(wordsPerMinute);
+
+    window.morseEncoder = morseEncoder;
+
+    function createCharacterElements(word) {
+      return word.map(character => {
+        let element = '<div class="character">' +
+          character +
+          '</div>'
+
+          return element
+      }).join('')
+    }
+
+    function createWordElements(words) {
+      return words.map(word => {
+        return createCharacterElements(word)
+      }).join("<br />")
+    }
+
+    setInterval(() => {
+      const character = morseEncoder.character || " "
+
+      document.querySelector("#character").textContent = character
+
+      const word = createCharacterElements(morseEncoder.word)
+      document.querySelector("#word").innerHTML = word
+
+      const words = createWordElements(morseEncoder.words)
+      document.querySelector("#words").innerHTML = words
+    }, 1000);
+  </script>
+</html>

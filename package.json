@@ -8,8 +8,9 @@
   },
   "author": "",
   "license": "UNLICENSED",
-  "dependencies": {
-    "mocha": "*"
+  "devDependencies": {
+    "mocha": "*",
+    "express": "*"
   },
   "type": "module",
   "imports": {
