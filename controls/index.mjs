@@ -1,7 +1,15 @@
 import Element from "./element.mjs"
+import Character from "./character.mjs"
+import Word from "./word.mjs"
+import Duration from "./duration.mjs"
 import WordsPerMinute from "./words-per-minute.mjs"
+import Time from "./time.mjs"
 
 export {
   Element,
-  WordsPerMinute
+  Character,
+  Word,
+  Duration,
+  WordsPerMinute,
+  Time
 }
