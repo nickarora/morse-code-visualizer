@@ -1,13 +1,10 @@
-import ArgumentError from "./argument-error.mjs"
+import ensure from "../ensure.mjs"
+
 import getElementDuration from "./encoder/get-element-duration.mjs"
 
 class Encoder {
   constructor(elementDuration) {
-    if (elementDuration == null) {
-      throw new ArgumentError()
-    }
-
-    this.elementDuration = elementDuration
+    this.elementDuration = ensure(elementDuration)
   }
 
   static build(wordsPerMinute) {
