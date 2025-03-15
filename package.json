@@ -10,5 +10,10 @@
   "license": "UNLICENSED",
   "dependencies": {
     "mocha": "*"
+  },
+  "type": "module",
+  "imports": {
+    "#controls": "./controls/index.mjs",
+    "#src/*": "./src/*"
   }
 }
