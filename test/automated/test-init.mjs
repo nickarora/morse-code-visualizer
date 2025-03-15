@@ -1,5 +1,5 @@
-import 'mocha'
-import assert from 'node:assert'
+import "mocha"
+import assert from "node:assert"
 
 function refute(value, message) {
   !assert(value, message)
