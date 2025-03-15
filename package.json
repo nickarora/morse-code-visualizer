@@ -14,6 +14,7 @@
   "type": "module",
   "imports": {
     "#controls": "./controls/index.mjs",
-    "#src/*": "./src/*"
+    "#src/*": "./src/*.mjs",
+    "#test/*": "./test/*.mjs"
   }
 }
