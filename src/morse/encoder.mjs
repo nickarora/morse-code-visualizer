@@ -31,13 +31,13 @@ class Encoder {
   signalOn() {
     this.startSignalTime = new Date().getTime()
 
-    readSignalOff()
+    this.readSignalOff()
   }
 
   signalOff() {
     this.stopSignalTime = new Date().getTime()
 
-    readSignalOn()
+    this.readSignalOn()
   }
 
   readSignalOn() {
