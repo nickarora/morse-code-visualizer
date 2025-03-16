@@ -43,20 +43,20 @@
         </button>
 
         <div>
-          <strong>Character</strong>
-          <code id="character" style="display: block;">
+          <strong>Current Character</strong>
+          <code id="current-character" style="display: block;">
           </code>
         </div>
 
         <div>
-          <strong>Word</strong>
-          <code id="word" style="display: block;">
+          <strong>Current Word</strong>
+          <code id="current-word" style="display: block;">
           </code>
         </div>
 
         <div>
-          <strong>Words</strong>
-          <code id="words" style="display: block;">
+          <strong>Previous Words</strong>
+          <code id="previous-words" style="display: block;">
           </code>
         </div>
     </main>
@@ -65,7 +65,7 @@
   <script type="module">
     import MorseEncoder from './morse/encoder.mjs';
 
-    const wordsPerMinute = 5;
+    const wordsPerMinute = 3;
     const morseEncoder = MorseEncoder.build(wordsPerMinute);
 
     window.morseEncoder = morseEncoder;
@@ -87,15 +87,15 @@
     }
 
     setInterval(() => {
-      const character = morseEncoder.character || " "
+      const currentCharacter = morseEncoder.currentCharacter || ""
 
-      document.querySelector("#character").textContent = character
+      document.querySelector("#current-character").textContent = currentCharacter
 
-      const word = createCharacterElements(morseEncoder.word)
-      document.querySelector("#word").innerHTML = word
+      const currentWord = createCharacterElements(morseEncoder.currentWord)
+      document.querySelector("#current-word").innerHTML = currentWord
 
-      const words = createWordElements(morseEncoder.words)
-      document.querySelector("#words").innerHTML = words
+      const previousWords = createWordElements(morseEncoder.previousWords)
+      document.querySelector("#previous-words").innerHTML = previousWords
     }, 1000);
   </script>
 </html>
