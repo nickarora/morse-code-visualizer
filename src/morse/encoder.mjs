@@ -3,13 +3,17 @@ import ensure from "../ensure.mjs"
 import getElementDuration from "./encoder/get-element-duration.mjs"
 
 import Element from "./element.mjs"
+import Clock, { SubstituteClock } from "../clock.mjs"
 
 class Encoder {
   static build(wordsPerMinute) {
     wordsPerMinute ||= 8
 
     const elementDuration = getElementDuration(wordsPerMinute)
+
     const instance = new Encoder(elementDuration)
+
+    Clock.configure(instance)
 
     return instance
   }
@@ -29,17 +33,19 @@ class Encoder {
 
     // this.addCharacterTimeoutID = null
     // this.addWordTimeoutID = null
+
+    SubstituteClock.configure(this)
   }
 
   signalOn() {
     // clearTimeout(this.addCharacterTimeoutID)
     // clearTimeout(this.addWordTimeoutID)
 
-    this.startSignalTime = new Date().getTime()
+    this.startSignalTime = this.clock.now()
   }
 
   signalOff() {
-    this.stopSignalTime = new Date().getTime()
+    this.stopSignalTime = this.clock.now()
 
     this.readSignal()
 
