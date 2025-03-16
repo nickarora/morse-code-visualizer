@@ -6,15 +6,16 @@ import Encoder from "#src/morse/encoder"
 
 describe("Morse", () => {
   describe("Encoder", () => {
-    describe("Read Signal On", () => {
-      describe("No Start Time", () => {
+    describe("Read Signal", () => {
+      describe("Stop Time Precedes Start Time", () => {
         const encoder = new Encoder(Duration.example())
 
-        encoder.stopSignalTime = Time.example()
+        encoder.startSignalTime = Time.example({ offsetMilliseconds: 2 })
+        encoder.stopSignalTime = Time.example({ offsetMilliseconds: 1 })
 
         const controlCharacter = encoder.currentCharacter
 
-        encoder.readSignalOn()
+        encoder.readSignal()
 
         describe("Current Character", () => {
           const currentCharacter = encoder.currentCharacter

@@ -6,7 +6,7 @@ import Encoder from "#src/morse/encoder"
 
 describe("Morse", () => {
   describe("Encoder", () => {
-    describe("Read Signal On", () => {
+    describe("Read Signal", () => {
       describe("Signal Duration", () => {
         describe("Less Than Element Duration", () => {
           const elementDuration = Duration.example()
@@ -18,7 +18,7 @@ describe("Morse", () => {
             offsetMilliseconds: elementDuration - 1
           })
 
-          encoder.readSignalOn()
+          encoder.readSignal()
 
           describe("Current Character", () => {
             const currentCharacter = encoder.currentCharacter
@@ -39,7 +39,7 @@ describe("Morse", () => {
             offsetMilliseconds: elementDuration
           })
 
-          encoder.readSignalOn()
+          encoder.readSignal()
 
           describe("Current Character", () => {
             const currentCharacter = encoder.currentCharacter
@@ -60,7 +60,7 @@ describe("Morse", () => {
             offsetMilliseconds: elementDuration + 1
           })
 
-          encoder.readSignalOn()
+          encoder.readSignal()
 
           describe("Current Character", () => {
             const currentCharacter = encoder.currentCharacter

@@ -41,7 +41,7 @@ class Encoder {
   signalOff() {
     this.stopSignalTime = new Date().getTime()
 
-    this.readSignalOn()
+    this.readSignal()
 
     // this.addCharacterTimeoutID = setTimeout(() => {
     //   this.recordCharacter()
@@ -52,7 +52,7 @@ class Encoder {
     // }, this.characterDuration + this.wordDuration)
   }
 
-  readSignalOn() {
+  readSignal() {
     if (!this.startSignalTime || !this.stopSignalTime) {
       return
     }
