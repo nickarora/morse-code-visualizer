@@ -26,18 +26,30 @@ class Encoder {
     this.currentCharacter = ""
     this.currentWord = []
     this.previousWords = []
+
+    // this.addCharacterTimeoutID = null
+    // this.addWordTimeoutID = null
   }
 
   signalOn() {
-    this.startSignalTime = new Date().getTime()
+    // clearTimeout(this.addCharacterTimeoutID)
+    // clearTimeout(this.addWordTimeoutID)
 
-    this.readSignalOff()
+    this.startSignalTime = new Date().getTime()
   }
 
   signalOff() {
     this.stopSignalTime = new Date().getTime()
 
     this.readSignalOn()
+
+    // this.addCharacterTimeoutID = setTimeout(() => {
+    //   this.recordCharacter()
+    // }, this.characterDuration)
+
+    // this.addWordTimeoutID = setTimeout(() => {
+    //   this.recordWord()
+    // }, this.characterDuration + this.wordDuration)
   }
 
   readSignalOn() {
@@ -60,24 +72,6 @@ class Encoder {
     }
 
     this.currentCharacter = this.currentCharacter.concat(element)
-  }
-
-  readSignalOff() {
-    if (!this.startSignalTime || !this.stopSignalTime) {
-      return
-    }
-
-    const signalDuration = this.startSignalTime - this.stopSignalTime
-
-    if (signalDuration < 0 || signalDuration <= this.characterDuration) {
-      return
-    }
-
-    this.recordCharacter()
-
-    if (signalDuration > this.wordDuration) {
-      this.recordWord()
-    }
   }
 
   recordCharacter() {
