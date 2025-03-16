@@ -9,7 +9,7 @@ describe("Morse", () => {
     describe("Signal Off", () => {
       const encoder = new Encoder(Duration.example())
 
-      const clockTime = Time.example()
+      const clockTime = Time.other()
       encoder.clock.set(clockTime)
 
       encoder.signalOff()
@@ -17,7 +17,7 @@ describe("Morse", () => {
       describe("Stop Signal Time", () => {
         const stopSignalTime = encoder.stopSignalTime
 
-        it('Clock time', () => {
+        it("Clock time", () => {
           assert.equal(stopSignalTime, clockTime)
         })
       })

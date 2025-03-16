@@ -1,8 +1,7 @@
 import ensure from "../ensure.mjs"
 
 import getElementDuration from "./encoder/get-element-duration.mjs"
-
-import Element from "./element.mjs"
+import SignalReader, { SubstituteSignalReader } from "./encoder/signal-reader.mjs"
 import Clock, { SubstituteClock } from "../clock.mjs"
 
 class Encoder {
@@ -14,6 +13,7 @@ class Encoder {
     const instance = new Encoder(elementDuration)
 
     Clock.configure(instance)
+    SignalReader.configure(instance, elementDuration)
 
     return instance
   }
@@ -35,6 +35,7 @@ class Encoder {
     // this.addWordTimeoutID = null
 
     SubstituteClock.configure(this)
+    SubstituteSignalReader.configure(this)
   }
 
   signalOn() {
@@ -65,18 +66,12 @@ class Encoder {
 
     const signalDuration = this.stopSignalTime - this.startSignalTime
 
-    if (signalDuration <= 0) {
-      return
-    }
+    const element = this.signalReader.read(signalDuration)
 
-    let element
+    this.appendElement(element)
+  }
 
-    if (signalDuration <= this.elementDuration) {
-      element = Element.dit
-    } else {
-      element = Element.dah
-    }
-
+  appendElement(element) {
     this.currentCharacter = this.currentCharacter.concat(element)
   }
 
