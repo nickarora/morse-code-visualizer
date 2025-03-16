@@ -34,12 +34,12 @@ describe("Morse", () => {
               })
             })
 
-            describe("Word", () => {
-              const word = encoder.word
+            describe("Current Word", () => {
+              const currentWord = encoder.currentWord
               const controlWord = [controlCharacter]
 
               it("Empty", () => {
-                assert.deepStrictEqual(word, controlWord)
+                assert.deepStrictEqual(currentWord, controlWord)
               })
             })
 

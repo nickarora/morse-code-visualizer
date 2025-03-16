@@ -24,7 +24,7 @@ class Encoder {
     this.stopSignalTime = null
 
     this.currentCharacter = ""
-    this.word = []
+    this.currentWord = []
     this.words = []
   }
 
@@ -82,18 +82,18 @@ class Encoder {
 
   recordCharacter() {
     if (this.currentCharacter.length > 0) {
-      this.word.push(this.currentCharacter)
+      this.currentWord.push(this.currentCharacter)
     }
 
     this.currentCharacter = ""
   }
 
   recordWord() {
-    if (this.word.length > 0) {
-      this.words.push(this.word)
+    if (this.currentWord.length > 0) {
+      this.words.push(this.currentWord)
     }
 
-    this.word = []
+    this.currentWord = []
   }
 }
 

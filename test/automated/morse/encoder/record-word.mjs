@@ -11,7 +11,7 @@ describe("Morse", () => {
         const encoder = new Encoder(Duration.example())
 
         const word = Word.example()
-        encoder.word = Array.from(word)
+        encoder.currentWord = Array.from(word)
 
         encoder.recordWord()
 
@@ -24,11 +24,11 @@ describe("Morse", () => {
           })
         })
 
-        describe("Word", () => {
-          const word = encoder.word
+        describe("Current Word", () => {
+          const currentWord = encoder.currentWord
 
           it("Cleared", () => {
-            assert(word.length == 0)
+            assert(currentWord.length == 0)
           })
         })
       })
@@ -46,11 +46,11 @@ describe("Morse", () => {
           })
         })
 
-        describe("Word", () => {
-          const word = encoder.word
+        describe("Current Word", () => {
+          const currentWord = encoder.currentWord
 
           it("Not changed", () => {
-            assert(word.length == 0)
+            assert(currentWord.length == 0)
           })
         })
       })

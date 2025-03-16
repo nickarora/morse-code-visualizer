@@ -24,11 +24,11 @@ describe("Morse", () => {
           })
         })
 
-        describe("Word", () => {
-          const word = encoder.word
+        describe("Current Word", () => {
+          const currentWord = encoder.currentWord
 
           it("Not changed", () => {
-            assert(word.length == 0)
+            assert(currentWord.length == 0)
           })
         })
 
