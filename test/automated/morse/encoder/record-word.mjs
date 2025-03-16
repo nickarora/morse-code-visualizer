@@ -24,11 +24,10 @@ describe("Morse", () => {
           })
         })
 
-
         describe("Word", () => {
           const word = encoder.word
 
-          it("No Characters", () => {
+          it("Cleared", () => {
             assert(word.length == 0)
           })
         })
@@ -39,18 +38,18 @@ describe("Morse", () => {
 
         encoder.recordWord()
 
-        describe("Word", () => {
-          const word = encoder.word
+        describe("Words", () => {
+          const words = encoder.words
 
           it("Not changed", () => {
-            assert(word.length == 0)
+            assert(words.length == 0)
           })
         })
 
         describe("Word", () => {
           const word = encoder.word
 
-          it("No Characters", () => {
+          it("Not changed", () => {
             assert(word.length == 0)
           })
         })

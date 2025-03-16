@@ -13,12 +13,12 @@ describe("Morse", () => {
         encoder.startSignalTime = Time.example()
         encoder.stopSignalTime = Time.example()
 
-        const controlCharacter = encoder.character
+        const controlCharacter = encoder.currentCharacter
 
         encoder.readSignalOn()
 
-        describe("Character", () => {
-          const character = encoder.character
+        describe("Current Character", () => {
+          const character = encoder.currentCharacter
 
           it("Not changed", () => {
             assert.equal(character, controlCharacter)

@@ -20,12 +20,12 @@ describe("Morse", () => {
 
           encoder.readSignalOn()
 
-          describe("Character", () => {
-            const character = encoder.character
+          describe("Current Character", () => {
+            const currentCharacter = encoder.currentCharacter
             const controlCharacter = Element.dit()
 
             it("Dit", () => {
-              assert.equal(character, controlCharacter)
+              assert.equal(currentCharacter, controlCharacter)
             })
           })
         })
@@ -41,12 +41,12 @@ describe("Morse", () => {
 
           encoder.readSignalOn()
 
-          describe("Character", () => {
-            const character = encoder.character
+          describe("Current Character", () => {
+            const currentCharacter = encoder.currentCharacter
             const controlCharacter = Element.dit()
 
             it("Dit", () => {
-              assert.equal(character, controlCharacter)
+              assert.equal(currentCharacter, controlCharacter)
             })
           })
         })
@@ -62,12 +62,12 @@ describe("Morse", () => {
 
           encoder.readSignalOn()
 
-          describe("Character", () => {
-            const character = encoder.character
+          describe("Current Character", () => {
+            const currentCharacter = encoder.currentCharacter
             const controlCharacter = Element.dah()
 
             it("Dah", () => {
-              assert.equal(character, controlCharacter)
+              assert.equal(currentCharacter, controlCharacter)
             })
           })
         })

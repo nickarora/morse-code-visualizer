@@ -7,12 +7,12 @@ import Encoder from "#src/morse/encoder"
 describe("Morse", () => {
   describe("Encoder", () => {
     describe("Record Character", () => {
-      describe("Has Character", () => {
+      describe("Current Character", () => {
         const encoder = new Encoder(Duration.example())
 
         const character = Character.example()
 
-        encoder.character = character
+        encoder.currentCharacter = character
 
         encoder.recordCharacter()
 
@@ -26,16 +26,16 @@ describe("Morse", () => {
         })
 
 
-        describe("Character", () => {
-          const character = encoder.character
+        describe("Current Character", () => {
+          const currentCharacter = encoder.currentCharacter
 
-          it("Empty string", () => {
-            assert.equal(character, "")
+          it("Unset", () => {
+            assert.equal(currentCharacter, "")
           })
         })
       })
 
-      describe("Has No Character", () => {
+      describe("No Current Character", () => {
         const encoder = new Encoder(Duration.example())
 
         const controlWord = Word.example()
@@ -51,11 +51,11 @@ describe("Morse", () => {
           })
         })
 
-        describe("Character", () => {
-          const character = encoder.character
+        describe("Current Character", () => {
+          const currentCharacter = encoder.currentCharacter
 
-          it("Empty string", () => {
-            assert.equal(character, "")
+          it("Not changed", () => {
+            assert.equal(currentCharacter, "")
           })
         })
       })

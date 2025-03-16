@@ -22,15 +22,15 @@ describe("Morse", () => {
             encoder.stopSignalTime = Time.example({ offsetMilliseconds: -characterDuration - 1 })
 
             const controlCharacter = Character.example()
-            encoder.character = controlCharacter
+            encoder.currentCharacter = controlCharacter
 
             encoder.readSignalOff()
 
-            describe("Character", () => {
-              const character = encoder.character
+            describe("Current Character", () => {
+              const currentCharacter = encoder.currentCharacter
 
               it("Cleared", () => {
-                assert.equal(character, "")
+                assert.equal(currentCharacter, "")
               })
             })
 

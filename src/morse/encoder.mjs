@@ -23,7 +23,7 @@ class Encoder {
     this.startSignalTime = null
     this.stopSignalTime = null
 
-    this.character = ""
+    this.currentCharacter = ""
     this.word = []
     this.words = []
   }
@@ -59,7 +59,7 @@ class Encoder {
       element = Element.dah
     }
 
-    this.character = this.character.concat(element)
+    this.currentCharacter = this.currentCharacter.concat(element)
   }
 
   readSignalOff() {
@@ -81,11 +81,11 @@ class Encoder {
   }
 
   recordCharacter() {
-    if (this.character.length > 0) {
-      this.word.push(this.character)
+    if (this.currentCharacter.length > 0) {
+      this.word.push(this.currentCharacter)
     }
 
-    this.character = ""
+    this.currentCharacter = ""
   }
 
   recordWord() {
