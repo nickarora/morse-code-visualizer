@@ -25,7 +25,7 @@ class Encoder {
 
     this.currentCharacter = ""
     this.currentWord = []
-    this.words = []
+    this.previousWords = []
   }
 
   signalOn() {
@@ -90,7 +90,7 @@ class Encoder {
 
   recordWord() {
     if (this.currentWord.length > 0) {
-      this.words.push(this.currentWord)
+      this.previousWords.push(this.currentWord)
     }
 
     this.currentWord = []

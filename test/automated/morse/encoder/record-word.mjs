@@ -15,12 +15,12 @@ describe("Morse", () => {
 
         encoder.recordWord()
 
-        describe("Words", () => {
-          const words = encoder.words
+        describe("Previous Words", () => {
+          const previousWords = encoder.previousWords
           const controlWords = [word]
 
           it("Updated", () => {
-            assert.deepStrictEqual(words, controlWords)
+            assert.deepStrictEqual(previousWords, controlWords)
           })
         })
 
@@ -38,11 +38,11 @@ describe("Morse", () => {
 
         encoder.recordWord()
 
-        describe("Words", () => {
-          const words = encoder.words
+        describe("Previous Words", () => {
+          const previousWords = encoder.previousWords
 
           it("Not changed", () => {
-            assert(words.length == 0)
+            assert(previousWords.length == 0)
           })
         })
 

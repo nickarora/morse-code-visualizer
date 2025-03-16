@@ -42,14 +42,14 @@ describe("Morse", () => {
               })
             })
 
-            describe("Words", () => {
-              const words = encoder.words
+            describe("Previous Words", () => {
+              const previousWords = encoder.previousWords
 
               const controlWord = [controlCharacter]
               const controlWords = [controlWord]
 
               it("Word added", () => {
-                assert.deepStrictEqual(words, controlWords)
+                assert.deepStrictEqual(previousWords, controlWords)
               })
             })
           })

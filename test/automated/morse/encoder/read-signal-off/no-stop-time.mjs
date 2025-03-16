@@ -32,11 +32,11 @@ describe("Morse", () => {
           })
         })
 
-        describe("Words", () => {
-          const words = encoder.words
+        describe("Previous Words", () => {
+          const previousWords = encoder.previousWords
 
           it("Not changed", () => {
-            assert(words.length == 0)
+            assert(previousWords.length == 0)
           })
         })
       })

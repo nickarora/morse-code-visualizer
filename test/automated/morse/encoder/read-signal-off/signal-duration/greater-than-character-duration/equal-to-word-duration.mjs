@@ -43,11 +43,11 @@ describe("Morse", () => {
               })
             })
 
-            describe("Words", () => {
-              const words = encoder.words
+            describe("Previous Words", () => {
+              const previousWords = encoder.previousWords
 
               it("Not added", () => {
-                assert(words.length == 0)
+                assert(previousWords.length == 0)
               })
             })
           })
