@@ -21,6 +21,14 @@ describe("Morse", () => {
           assert.equal(startSignalTime, clockTime)
         })
       })
+
+      describe('Scheduler', () => {
+        const scheduler = encoder.scheduler
+
+        it('Scheduled tasks canceled', () => {
+          assert(scheduler.hasCanceledAll())
+        })
+      })
     })
   })
 })

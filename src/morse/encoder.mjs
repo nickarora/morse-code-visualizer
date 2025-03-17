@@ -1,8 +1,9 @@
 import ensure from "../ensure.mjs"
 
 import getElementDuration from "./encoder/get-element-duration.mjs"
-import SignalReader, { SubstituteSignalReader } from "./encoder/signal-reader.mjs"
 import Clock, { SubstituteClock } from "../clock.mjs"
+import Scheduler, { SubstituteScheduler } from "../scheduler.mjs"
+import SignalReader, { SubstituteSignalReader } from "./encoder/signal-reader.mjs"
 
 class Encoder {
   static build(wordsPerMinute) {
@@ -13,6 +14,7 @@ class Encoder {
     const instance = new Encoder(elementDuration)
 
     Clock.configure(instance)
+    Scheduler.configure(instance)
     SignalReader.configure(instance, elementDuration)
 
     return instance
@@ -31,16 +33,13 @@ class Encoder {
     this.currentWord = []
     this.previousWords = []
 
-    // this.addCharacterTimeoutID = null
-    // this.addWordTimeoutID = null
-
     SubstituteClock.configure(this)
+    SubstituteScheduler.configure(this)
     SubstituteSignalReader.configure(this)
   }
 
   signalOn() {
-    // clearTimeout(this.addCharacterTimeoutID)
-    // clearTimeout(this.addWordTimeoutID)
+    this.scheduler.cancelAll()
 
     this.startSignalTime = this.clock.now()
   }
@@ -50,13 +49,15 @@ class Encoder {
 
     this.readSignal()
 
-    // this.addCharacterTimeoutID = setTimeout(() => {
-    //   this.recordCharacter()
-    // }, this.characterDuration)
+    this.scheduler.schedule(
+      this.recordCharacter.bind(this),
+      this.characterDuration
+    )
 
-    // this.addWordTimeoutID = setTimeout(() => {
-    //   this.recordWord()
-    // }, this.characterDuration + this.wordDuration)
+    this.scheduler.schedule(
+      this.recordWord.bind(this),
+      this.characterDuration + this.wordDuration
+    )
   }
 
   readSignal() {
