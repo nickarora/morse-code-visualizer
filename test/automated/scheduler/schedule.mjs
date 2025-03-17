@@ -5,7 +5,7 @@ import Scheduler from "#src/scheduler"
 import { Duration } from "#controls"
 
 describe("Scheduler", () => {
-  describe("schedule", () => {
+  describe("Schedule", () => {
     const scheduler = new Scheduler()
 
     let effect = null
