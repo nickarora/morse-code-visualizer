@@ -4,6 +4,7 @@ import getElementDuration from "./encoder/get-element-duration.mjs"
 import Clock, { SubstituteClock } from "../clock.mjs"
 import Scheduler, { SubstituteScheduler } from "../scheduler.mjs"
 import SignalReader, { SubstituteSignalReader } from "./encoder/signal-reader.mjs"
+import Character from "./character.mjs"
 
 class Encoder {
   static build(wordsPerMinute) {
@@ -29,7 +30,7 @@ class Encoder {
     this.startSignalTime = null
     this.stopSignalTime = null
 
-    this.currentCharacter = ""
+    this.currentCharacter = new Character()
     this.currentWord = []
     this.previousWords = []
 
@@ -72,15 +73,16 @@ class Encoder {
   }
 
   appendElement(element) {
-    this.currentCharacter = this.currentCharacter.concat(element)
+    this.currentCharacter.addElement(element)
   }
 
   recordCharacter() {
-    if (this.currentCharacter.length > 0) {
-      this.currentWord.push(this.currentCharacter)
+    if (this.currentCharacter.hasElements()) {
+      const word = this.currentCharacter.toString()
+      this.currentWord.push(word)
     }
 
-    this.currentCharacter = ""
+    this.currentCharacter.clear()
   }
 
   recordWord() {

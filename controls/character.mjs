@@ -1,11 +1,17 @@
+import CharacterClass from "../src/morse/character.mjs"
 import Element from "./element.mjs"
 
 class Character {
   static example() {
-    const dit = Element.dit()
-    const dah = Element.dah()
+    const elements = [this.elements()]
 
-    return `${dit}${dah}`
+    const character = new CharacterClass(elements)
+
+    return character
+  }
+
+  static elements() {
+    return [Element.example()]
   }
 }
 

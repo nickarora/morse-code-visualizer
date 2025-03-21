@@ -2,7 +2,7 @@ import "mocha"
 import assert from "node:assert"
 
 function refute(value, message) {
-  !assert(value, message)
+  return assert(!value, message)
 }
 
 refute.equal = assert.notEqual.bind(assert);

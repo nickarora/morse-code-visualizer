@@ -1,4 +1,4 @@
-import { assert } from "#test/automated/test-init"
+import { assert, refute } from "#test/automated/test-init"
 
 import { Character, Word, Duration } from "#controls"
 
@@ -12,25 +12,25 @@ describe("Morse", () => {
 
         const character = Character.example()
 
+        const controlWord = [character.toString()]
+
         encoder.currentCharacter = character
 
         encoder.recordCharacter()
 
         describe("Current Word", () => {
           const currentWord = encoder.currentWord
-          const controlWord = [character]
 
           it("Updated", () => {
             assert.deepStrictEqual(currentWord, controlWord)
           })
         })
 
-
         describe("Current Character", () => {
           const currentCharacter = encoder.currentCharacter
 
-          it("Unset", () => {
-            assert.equal(currentCharacter, "")
+          it("Cleared", () => {
+            refute(currentCharacter.hasElements())
           })
         })
       })
@@ -55,7 +55,7 @@ describe("Morse", () => {
           const currentCharacter = encoder.currentCharacter
 
           it("Not changed", () => {
-            assert.equal(currentCharacter, "")
+            refute(currentCharacter.hasElements())
           })
         })
       })

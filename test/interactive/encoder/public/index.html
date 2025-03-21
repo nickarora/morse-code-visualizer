@@ -70,31 +70,28 @@
 
     window.morseEncoder = morseEncoder;
 
-    function createCharacterElements(word) {
+    function createWordElements(word) {
       return word.map(character => {
-        let element = '<div class="character">' +
-          character +
-          '</div>'
-
-          return element
+        console.log('character', character)
+        return `<div class="character">${character}</div>`
       }).join('')
     }
 
-    function createWordElements(words) {
+    function createPreviousWordElements(words) {
       return words.map(word => {
-        return createCharacterElements(word)
+        return createWordElements(word)
       }).join("<br />")
     }
 
     setInterval(() => {
       const currentCharacter = morseEncoder.currentCharacter || ""
 
-      document.querySelector("#current-character").textContent = currentCharacter
+      document.querySelector("#current-character").textContent = currentCharacter.toString()
 
-      const currentWord = createCharacterElements(morseEncoder.currentWord)
+      const currentWord = createWordElements(morseEncoder.currentWord)
       document.querySelector("#current-word").innerHTML = currentWord
 
-      const previousWords = createWordElements(morseEncoder.previousWords)
+      const previousWords = createPreviousWordElements(morseEncoder.previousWords)
       document.querySelector("#previous-words").innerHTML = previousWords
     }, 1000);
   </script>
