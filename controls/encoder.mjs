@@ -4,10 +4,14 @@ import { Duration } from "#controls"
 
 class Encoder {
   static example() {
-    const duration = Duration.example()
+    const duration = this.duration()
     const encoder = new EncoderClass(duration)
 
     return encoder
+  }
+
+  static duration() {
+    return Duration.example()
   }
 }
 
