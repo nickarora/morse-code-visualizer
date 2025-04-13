@@ -23,4 +23,26 @@ class Character {
   }
 }
 
+class A {
+  static example() {
+    return Character.example(this.elements())
+  }
+
+  static elements() {
+    return [Element.dit(), Element.dah()]
+  }
+}
+Character.A = A
+
+class B {
+  static example() {
+    return Character.example(this.elements())
+  }
+
+  static elements() {
+    return [Element.dah(), Element.dit(), Element.dit(), Element.dit()]
+  }
+}
+Character.B = B
+
 export default Character

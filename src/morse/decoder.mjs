@@ -28,6 +28,13 @@ const letterToElements = {
 }
 
 class Decoder {
+  static decodeWord(word) {
+    return word.
+      characters().
+      map(this.decodeCharacter).
+      join('')
+  }
+
   static decodeCharacter(character) {
     const decodedCharacter = letterToElements[character.toString()]
 
