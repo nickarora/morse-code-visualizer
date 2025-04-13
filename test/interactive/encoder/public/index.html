@@ -71,8 +71,7 @@
     window.morseEncoder = morseEncoder;
 
     function createWordElements(word) {
-      return word.map(character => {
-        console.log('character', character)
+      return word.characters().map(character => {
         return `<div class="character">${character}</div>`
       }).join('')
     }

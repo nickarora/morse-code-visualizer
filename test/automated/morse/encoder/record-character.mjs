@@ -8,9 +8,9 @@ describe("Morse", () => {
       describe("Current Character", () => {
         const encoder = Encoder.example()
 
-        const character = Character.example()
+        encoder.currentWord = Word.New.example()
 
-        const controlWord = [character.toString()]
+        const character = Character.example()
 
         encoder.currentCharacter = character
 
@@ -18,9 +18,10 @@ describe("Morse", () => {
 
         describe("Current Word", () => {
           const currentWord = encoder.currentWord
+          const characters = currentWord.characters()
 
           it("Updated", () => {
-            assert.deepStrictEqual(currentWord, controlWord)
+            assert.deepStrictEqual(characters, [character])
           })
         })
 
@@ -36,8 +37,7 @@ describe("Morse", () => {
       describe("No Current Character", () => {
         const encoder = Encoder.example()
 
-        const controlWord = Word.example()
-        encoder.currentWord = Array.from(controlWord)
+        encoder.currentWord = Word.example()
 
         encoder.recordCharacter()
 
@@ -45,7 +45,7 @@ describe("Morse", () => {
           const currentWord = encoder.currentWord
 
           it("Not changed", () => {
-            assert.deepStrictEqual(currentWord, controlWord)
+            assert.deepStrictEqual(currentWord, Word.example())
           })
         })
 

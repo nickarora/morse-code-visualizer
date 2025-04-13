@@ -5,6 +5,7 @@ import Clock, { SubstituteClock } from "../clock.mjs"
 import Scheduler, { SubstituteScheduler } from "../scheduler.mjs"
 import SignalReader, { SubstituteSignalReader } from "./encoder/signal-reader.mjs"
 import Character from "./character.mjs"
+import Word from "./word.mjs"
 
 class Encoder {
   static build(wordsPerMinute) {
@@ -31,7 +32,7 @@ class Encoder {
     this.stopSignalTime = null
 
     this.currentCharacter = new Character()
-    this.currentWord = []
+    this.currentWord = new Word()
     this.previousWords = []
 
     SubstituteClock.configure(this)
@@ -78,19 +79,18 @@ class Encoder {
 
   recordCharacter() {
     if (!this.currentCharacter.isEmpty()) {
-      const word = this.currentCharacter.toString()
-      this.currentWord.push(word)
+      this.currentWord.addCharacter(this.currentCharacter)
     }
 
-    this.currentCharacter.clear()
+    this.currentCharacter = new Character()
   }
 
   recordWord() {
-    if (this.currentWord.length > 0) {
+    if (!this.currentWord.isEmpty()) {
       this.previousWords.push(this.currentWord)
     }
 
-    this.currentWord = []
+    this.currentWord = new Word()
   }
 }
 

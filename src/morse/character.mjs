@@ -28,6 +28,10 @@ class Character {
   clear() {
     this._elements = []
   }
+
+  dup() {
+    return new Character(this._elements)
+  }
 }
 
 export default Character

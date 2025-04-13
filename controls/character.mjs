@@ -11,6 +11,13 @@ class Character {
     return character
   }
 
+  static other() {
+    const elements = [Element.other()]
+    const character = this.example(elements)
+
+    return character
+  }
+
   static elements() {
     return [Element.example()]
   }

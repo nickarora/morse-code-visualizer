@@ -1,6 +1,10 @@
 class Element {
   static example() {
-    return "."
+    return this.dit()
+  }
+
+  static other() {
+    return this.dah()
   }
 
   static dit() {
