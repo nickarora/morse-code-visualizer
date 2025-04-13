@@ -28,7 +28,7 @@ describe("Morse", () => {
           const currentCharacter = encoder.currentCharacter
 
           it("Cleared", () => {
-            refute(currentCharacter.hasElements())
+            assert(currentCharacter.isEmpty())
           })
         })
       })
@@ -53,7 +53,7 @@ describe("Morse", () => {
           const currentCharacter = encoder.currentCharacter
 
           it("Not changed", () => {
-            refute(currentCharacter.hasElements())
+            assert(currentCharacter.isEmpty())
           })
         })
       })

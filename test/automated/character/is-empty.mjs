@@ -5,9 +5,7 @@ import { Character } from "#controls"
 describe("Character", () => {
   describe("Is Empty", () => {
     describe("Affirmative", () => {
-      const character = Character.example()
-
-      character.clear()
+      const character = Character.example([])
 
       it("True", () => {
         assert(character.isEmpty())

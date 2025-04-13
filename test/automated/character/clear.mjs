@@ -1,17 +1,19 @@
-import { assert, refute } from "#test/automated/test-init"
+import { assert } from "#test/automated/test-init"
 
-import { Character } from "#controls"
+import { Character, Element } from "#controls"
 
 describe("Character", () => {
   describe("Clear", () => {
-    const character = Character.example()
+    const element = Element.example()
 
-    assert(character.hasElements())
+    const character = Character.example([element])
 
     character.clear()
 
+    const elements = character.elements()
+
     it("Cleared", () => {
-      refute(character.hasElements())
+      assert.deepStrictEqual(elements, [])
     })
   })
 })
