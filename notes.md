@@ -1,11 +1,13 @@
 # Notes
 
-- Character
-```javascript
-character.addElement(element)
-```
+- Encoder
+  - onCharacterChange()
+  - onWordChange()
+  - onWordAdded()
 
-- Word
-```javascript
-word.addCharacter(character)
-```
+- Decoder
+  - decode(words)
+  - Character
+    - decode(character)
+  - Word
+    - decode(word)
