@@ -1,13 +1,11 @@
 import { assert } from "#test/automated/test-init"
 
-import { Time, Duration } from "#controls"
-
-import Encoder from "#src/morse/encoder"
+import { Encoder, Time } from "#controls"
 
 describe("Morse", () => {
   describe("Encoder", () => {
     describe("Signal Off", () => {
-      const encoder = new Encoder(Duration.example())
+      const encoder = Encoder.example()
 
       const clockTime = Time.other()
       encoder.clock.set(clockTime)

@@ -1,4 +1,5 @@
-import CharacterClass from "../src/morse/character.mjs"
+import CharacterClass from "#src/morse/character"
+
 import Element from "./element.mjs"
 
 class Character {

@@ -1,4 +1,4 @@
-import Character from "./character.mjs"
+import { Character } from "#controls"
 
 class Word {
   static example() {

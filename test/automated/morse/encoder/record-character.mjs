@@ -1,14 +1,12 @@
 import { assert, refute } from "#test/automated/test-init"
 
-import { Character, Word, Duration } from "#controls"
-
-import Encoder from "#src/morse/encoder"
+import { Encoder, Character, Word } from "#controls"
 
 describe("Morse", () => {
   describe("Encoder", () => {
     describe("Record Character", () => {
       describe("Current Character", () => {
-        const encoder = new Encoder(Duration.example())
+        const encoder = Encoder.example()
 
         const character = Character.example()
 
@@ -36,7 +34,7 @@ describe("Morse", () => {
       })
 
       describe("No Current Character", () => {
-        const encoder = new Encoder(Duration.example())
+        const encoder = Encoder.example()
 
         const controlWord = Word.example()
         encoder.currentWord = Array.from(controlWord)
