@@ -55,8 +55,20 @@
         </div>
 
         <div>
+          <strong>Current Word (Decoded)</strong>
+          <code id="current-word-decoded" style="display: block;">
+          </code>
+        </div>
+
+        <div>
           <strong>Previous Words</strong>
           <code id="previous-words" style="display: block;">
+          </code>
+        </div>
+
+        <div>
+          <strong>Previous Words (Decoded)</strong>
+          <code id="previous-words-decoded" style="display: block;">
           </code>
         </div>
     </main>
@@ -64,6 +76,7 @@
 
   <script type="module">
     import MorseEncoder from './morse/encoder.mjs';
+    import MorseDecoder from './morse/decoder.mjs';
 
     function createWordHTML(word) {
       return word.
@@ -85,14 +98,22 @@
         document.querySelector("#current-character").textContent = character.toString()
       },
       onWordChange: (word) => {
-        const wordHTML = createWordHTML(word)
         document.querySelector("#current-character").textContent = ''
+
+        const wordHTML = createWordHTML(word)
         document.querySelector("#current-word").innerHTML = wordHTML
+
+        document.querySelector("#current-word-decoded").textContent = MorseDecoder.decodeWord(word)
       },
       onWordAdded: (words) => {
-        const wordsHTML = createWordsHTML(words)
         document.querySelector("#current-word").innerHTML = ''
+        document.querySelector("#current-word-decoded").textContent = ''
+
+        const wordsHTML = createWordsHTML(words)
         document.querySelector("#previous-words").innerHTML = wordsHTML
+
+        const decodedWords = words.map(word => MorseDecoder.decodeWord(word)).join(' ')
+        document.querySelector("#previous-words-decoded").textContent = decodedWords
       }
     });
 
