@@ -25,6 +25,10 @@ class Character {
     return this._elements.length > 0
   }
 
+  isEmpty() {
+    return this._elements.length == 0
+  }
+
   clear() {
     this._elements = []
   }

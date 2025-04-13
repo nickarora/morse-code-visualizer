@@ -77,7 +77,7 @@ class Encoder {
   }
 
   recordCharacter() {
-    if (this.currentCharacter.hasElements()) {
+    if (!this.currentCharacter.isEmpty()) {
       const word = this.currentCharacter.toString()
       this.currentWord.push(word)
     }
