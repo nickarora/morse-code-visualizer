@@ -1,4 +1,4 @@
-import { assert, refute } from "#test/automated/test-init"
+import { assert } from "#test/automated/test-init"
 
 import { Encoder, Character, Word } from "#controls"
 
