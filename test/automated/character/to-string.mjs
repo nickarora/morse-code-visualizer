@@ -16,7 +16,7 @@ describe("Character", () => {
 
     const characterString = character.toString()
 
-    it("Added", () => {
+    it("Is the expected string", () => {
       assert.equal(characterString, ".-")
     })
   })
