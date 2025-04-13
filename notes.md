@@ -1,10 +1,5 @@
 # Notes
 
-- Encoder
-  - onCharacterChange()
-  - onWordChange()
-  - onWordAdded()
-
 - Decoder
   - decode(words)
   - Character

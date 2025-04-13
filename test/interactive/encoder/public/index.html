@@ -65,33 +65,37 @@
   <script type="module">
     import MorseEncoder from './morse/encoder.mjs';
 
+    function createWordHTML(word) {
+      return word.
+        characters().
+        map(character => `<div class="character">${character}</div>`).
+        join('')
+    }
+
+    function createWordsHTML(words) {
+      return words.
+        map(word => createWordHTML(word)).
+        join('<br />')
+    }
+
     const wordsPerMinute = 3;
-    const morseEncoder = MorseEncoder.build(wordsPerMinute);
+
+    const morseEncoder = MorseEncoder.build(wordsPerMinute, {
+      onCharacterChange: (character) => {
+        document.querySelector("#current-character").textContent = character.toString()
+      },
+      onWordChange: (word) => {
+        const wordHTML = createWordHTML(word)
+        document.querySelector("#current-character").textContent = ''
+        document.querySelector("#current-word").innerHTML = wordHTML
+      },
+      onWordAdded: (words) => {
+        const wordsHTML = createWordsHTML(words)
+        document.querySelector("#current-word").innerHTML = ''
+        document.querySelector("#previous-words").innerHTML = wordsHTML
+      }
+    });
 
     window.morseEncoder = morseEncoder;
-
-    function createWordElements(word) {
-      return word.characters().map(character => {
-        return `<div class="character">${character}</div>`
-      }).join('')
-    }
-
-    function createPreviousWordElements(words) {
-      return words.map(word => {
-        return createWordElements(word)
-      }).join("<br />")
-    }
-
-    setInterval(() => {
-      const currentCharacter = morseEncoder.currentCharacter || ""
-
-      document.querySelector("#current-character").textContent = currentCharacter.toString()
-
-      const currentWord = createWordElements(morseEncoder.currentWord)
-      document.querySelector("#current-word").innerHTML = currentWord
-
-      const previousWords = createPreviousWordElements(morseEncoder.previousWords)
-      document.querySelector("#previous-words").innerHTML = previousWords
-    }, 1000);
   </script>
 </html>

@@ -8,12 +8,12 @@ import Character from "./character.mjs"
 import Word from "./word.mjs"
 
 class Encoder {
-  static build(wordsPerMinute) {
+  static build(wordsPerMinute, options = {}) {
     wordsPerMinute ||= 8
 
     const elementDuration = getElementDuration(wordsPerMinute)
 
-    const instance = new Encoder(elementDuration)
+    const instance = new Encoder(elementDuration, options)
 
     Clock.configure(instance)
     Scheduler.configure(instance)
@@ -22,8 +22,10 @@ class Encoder {
     return instance
   }
 
-  constructor(elementDuration) {
+  constructor(elementDuration, options = {}) {
     this.elementDuration = ensure(elementDuration)
+
+    this.options = options
 
     this.characterDuration = elementDuration * 3
     this.wordDuration = elementDuration * 7
@@ -75,11 +77,19 @@ class Encoder {
 
   appendElement(element) {
     this.currentCharacter.addElement(element)
+
+    if (this.options.onCharacterChange) {
+      this.options.onCharacterChange(this.currentCharacter)
+    }
   }
 
   recordCharacter() {
     if (!this.currentCharacter.isEmpty()) {
       this.currentWord.addCharacter(this.currentCharacter)
+
+      if (this.options.onWordChange) {
+        this.options.onWordChange(this.currentWord)
+      }
     }
 
     this.currentCharacter = new Character()
@@ -88,6 +98,10 @@ class Encoder {
   recordWord() {
     if (!this.currentWord.isEmpty()) {
       this.previousWords.push(this.currentWord)
+
+      if (this.options.onWordAdded) {
+        this.options.onWordAdded(this.previousWords)
+      }
     }
 
     this.currentWord = new Word()
