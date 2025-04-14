@@ -3,5 +3,59 @@
 }
 
 main {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
 }
+
+.morse-tree {
+  display: grid;
+  grid-template-columns: repeat(3, 4fr) 2fr repeat(4, 3fr);
+  grid-template-rows: repeat(7, 1fr);
+
+  grid-template-areas:
+    "o m t root e i s h"
+    "q g n .    a u v ."
+    ". z n .    a f . ."
+    "y k n .    a r l ."
+    ". c d .    w . . ."
+    ". x d .    w p . ."
+    ". . b .    j . . .";
+
+  width: 32rem;
+  height: 32rem;
+}
+
+.morse-element {
+  background: lightblue;
+  border: 1px solid white;
+}
+
+#morse-element-root { grid-area: root; }
+#morse-element-a { grid-area: a; }
+#morse-element-b { grid-area: b; }
+#morse-element-c { grid-area: c; }
+#morse-element-d { grid-area: d; }
+#morse-element-e { grid-area: e; }
+#morse-element-f { grid-area: f; }
+#morse-element-g { grid-area: g; }
+#morse-element-h { grid-area: h; }
+#morse-element-i { grid-area: i; }
+#morse-element-j { grid-area: j; }
+#morse-element-k { grid-area: k; }
+#morse-element-l { grid-area: l; }
+#morse-element-m { grid-area: m; }
+#morse-element-n { grid-area: n; }
+#morse-element-o { grid-area: o; }
+#morse-element-p { grid-area: p; }
+#morse-element-q { grid-area: q; }
+#morse-element-r { grid-area: r; }
+#morse-element-s { grid-area: s; }
+#morse-element-t { grid-area: t; }
+#morse-element-u { grid-area: u; }
+#morse-element-v { grid-area: v; }
+#morse-element-w { grid-area: w; }
+#morse-element-x { grid-area: x; }
+#morse-element-y { grid-area: y; }
+#morse-element-z { grid-area: z; }
+
