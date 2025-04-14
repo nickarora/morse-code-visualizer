@@ -1,8 +1,6 @@
 # Notes
 
-- Decoder
-  - decode(words)
-  - Character
-    - decode(character)
-  - Word
-    - decode(word)
+- Morse Code Visualizer Markup
+  - Title
+  - Tree
+  - Script
