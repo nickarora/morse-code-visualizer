@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "mocha",
+    "compile": "rollup -c rollup.config.mjs"
   },
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
     "mocha": "*",
-    "express": "*"
+    "express": "*",
+    "rollup": "*",
+    "@rollup/plugin-terser": "*"
   },
   "type": "module",
   "imports": {
