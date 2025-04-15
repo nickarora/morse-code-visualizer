@@ -1,5 +1,7 @@
 :root {
   font-size: 16px;
+  line-height: 1;
+  font-family: sans-serif;
 }
 
 main {
@@ -8,8 +10,15 @@ main {
   padding: 1rem;
 }
 
+h1 {
+  margin-bottom: 1.5rem;
+}
+
 .morse-tree {
   display: grid;
+  width: 24rem;
+  height: 24rem;
+
   grid-template-columns: repeat(3, 4fr) 2fr repeat(4, 3fr);
   grid-template-rows: repeat(7, 1fr);
 
@@ -21,14 +30,127 @@ main {
     ". c d .    w . . ."
     ". x d .    w p . ."
     ". . b .    j . . .";
-
-  width: 32rem;
-  height: 32rem;
 }
 
 .morse-element {
+  --bulb-short: 1rem;
+  --bulb-long: 2rem;
+  --bulb-dit-radius: 50%;
+  --bulb-dah-radius: 30%;
+
   background: lightblue;
   border: 1px solid white;
+
+  display: grid;
+
+  &.root {
+    align-items: end;
+    justify-content: center;
+
+    .bulb {
+      background-color: red;
+    }
+  }
+
+  &.right {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      ".    label"
+      "lead bulb";
+
+    .label {
+      align-self: end;
+      justify-self: center;
+    }
+  }
+
+  &.left {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      "label .   "
+      "bulb  lead";
+
+    .label {
+      align-self: end;
+      justify-self: center;
+    }
+  }
+
+  &.left.down {
+    grid-template-columns: var(--bulb-long) 1fr;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      "lead  .    "
+      "bulb  label";
+
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+
+    .label {
+      align-self: end;
+      justify-self: start;
+      margin-left: -0.25rem;
+    }
+  }
+
+  &.right.down {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      ".     lead"
+      "label bulb";
+
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+
+    .label {
+      align-self: end;
+      justify-self: end;
+      margin-right: 0.25rem;
+    }
+  }
+
+  .label {
+    grid-area: label;
+  }
+
+  .bulb {
+    grid-area: bulb;
+  }
+
+  .bulb {
+    background-color: orange;
+
+    &.dit {
+      width: var(--bulb-short);
+      height: var(--bulb-short);
+      border-radius: var(--bulb-dit-radius);
+    }
+
+    &.dah {
+      border-radius: var(--bulb-dah-radius);
+
+      &.horizontal {
+        width: var(--bulb-long);
+        height: var(--bulb-short);
+      }
+
+      &.vertical {
+        width: var(--bulb-short);
+        height: var(--bulb-long);
+      }
+    }
+  }
 }
 
 #morse-element-root { grid-area: root; }
