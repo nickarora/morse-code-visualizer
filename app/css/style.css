@@ -1,13 +1,28 @@
 :root {
-  --background-color: black;
-  --font-color: white;
+  --font-size: 16px;
+  --font-line-height: 1;
+  --font-family: sans-serif;
 
-  font-size: 16px;
-  line-height: 1;
-  font-family: sans-serif;
+  --color-background: black;
+  --color-font: white;
+  --color-element-off: darkgrey;
+  --color-element-on: yellow;
 
-  background-color: var(--background-color);
-  color: var(--font-color);
+  --bulb-dimension-short: 1rem;
+  --bulb-dimension-long: 2rem;
+  --bulb-dit-radius: 30%;
+  --bulb-dah-radius: 20%;
+
+  --lead-width: 0.25rem;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--font-line-height);
+
+  color: var(--color-font);
+  background-color: var(--color-background);
 }
 
 main {
@@ -44,14 +59,6 @@ button.signal-on {
 }
 
 .morse-element {
-  --bulb-short: 1rem;
-  --bulb-long: 2rem;
-  --bulb-dit-radius: 30%;
-  --bulb-dah-radius: 20%;
-  --lead-width: 0.25rem;
-  --lead-off-color: darkgrey;
-  --lead-on-color: yellow;
-
   display: grid;
 
   &.root {
@@ -109,7 +116,7 @@ button.signal-on {
   }
 
   &.left.down {
-    grid-template-columns: var(--bulb-long) 1fr;
+    grid-template-columns: var(--bulb-dimension-long) 1fr;
     grid-template-rows: 1fr auto;
 
     grid-template-areas:
@@ -173,8 +180,8 @@ button.signal-on {
     grid-area: bulb;
 
     &.dit {
-      width: var(--bulb-short);
-      height: var(--bulb-short);
+      width: var(--bulb-dimension-short);
+      height: var(--bulb-dimension-short);
       border-radius: var(--bulb-dit-radius);
     }
 
@@ -182,26 +189,30 @@ button.signal-on {
       border-radius: var(--bulb-dah-radius);
 
       &.horizontal {
-        width: var(--bulb-long);
-        height: var(--bulb-short);
+        width: var(--bulb-dimension-long);
+        height: var(--bulb-dimension-short);
       }
 
       &.vertical {
-        width: var(--bulb-short);
-        height: var(--bulb-long);
+        width: var(--bulb-dimension-short);
+        height: var(--bulb-dimension-long);
       }
     }
   }
 
-  .lead, .bulb {
-    background-color: var(--lead-off-color);
+  .lead {
+    background-color: var(--color-element-off);
+  }
+
+  .bulb {
+    background-color: var(--color-element-off);
   }
 
   &.on {
-    color: var(--lead-on-color);
+    color: var(--color-element-on);
 
     .lead, .bulb {
-      background-color: var(--lead-on-color);
+      background-color: var(--color-element-on);
     }
   }
 }
