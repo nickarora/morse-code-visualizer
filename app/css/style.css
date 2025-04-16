@@ -35,11 +35,10 @@ h1 {
 .morse-element {
   --bulb-short: 1rem;
   --bulb-long: 2rem;
-  --bulb-dit-radius: 50%;
-  --bulb-dah-radius: 30%;
-
-  background: lightblue;
-  border: 1px solid white;
+  --bulb-dit-radius: 30%;
+  --bulb-dah-radius: 20%;
+  --lead-width: 0.25rem;
+  --lead-off-color: darkgrey;
 
   display: grid;
 
@@ -48,8 +47,14 @@ h1 {
     justify-content: center;
 
     .bulb {
-      background-color: red;
+      background-color: var(--lead-off-color);
     }
+  }
+
+  /* Specialized adjustment for the root node */
+  &#morse-element-e .lead {
+    width: calc(100% + 0.5rem);
+    transform: translateX(-0.5rem);
   }
 
   &.right {
@@ -64,6 +69,12 @@ h1 {
       align-self: end;
       justify-self: center;
     }
+
+    .lead {
+      width: 100%;
+      height: var(--lead-width);
+      align-self: center;
+    }
   }
 
   &.left {
@@ -77,6 +88,13 @@ h1 {
     .label {
       align-self: end;
       justify-self: center;
+    }
+
+    .lead {
+      width: calc(100% + 0.5rem);
+      transform: translateX(0);
+      height: var(--lead-width);
+      align-self: center;
     }
   }
 
@@ -98,6 +116,12 @@ h1 {
       justify-self: start;
       margin-left: -0.25rem;
     }
+
+    .lead {
+      width: var(--lead-width);
+      height: 100%;
+      justify-self: center;
+    }
   }
 
   &.right.down {
@@ -118,18 +142,26 @@ h1 {
       justify-self: end;
       margin-right: 0.25rem;
     }
+
+    .lead {
+      width: var(--lead-width);
+      height: 100%;
+      justify-self: center;
+    }
   }
 
   .label {
     grid-area: label;
   }
 
-  .bulb {
-    grid-area: bulb;
+  .lead {
+    grid-area: lead;
+    background-color: var(--lead-off-color);
   }
 
   .bulb {
-    background-color: orange;
+    grid-area: bulb;
+    background-color: var(--lead-off-color);
 
     &.dit {
       width: var(--bulb-short);
