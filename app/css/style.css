@@ -71,6 +71,7 @@ h1 {
     .label {
       align-self: end;
       justify-self: center;
+      margin-bottom: 0.25rem;
     }
 
     .lead {
@@ -91,6 +92,7 @@ h1 {
     .label {
       align-self: end;
       justify-self: center;
+      margin-bottom: 0.25rem;
     }
 
     .lead {
@@ -117,7 +119,7 @@ h1 {
     .label {
       align-self: end;
       justify-self: start;
-      margin-left: -0.25rem;
+      margin: 0 0 0 -0.25rem;
     }
 
     .lead {
@@ -143,7 +145,7 @@ h1 {
     .label {
       align-self: end;
       justify-self: end;
-      margin-right: 0.25rem;
+      margin: 0 0.25rem 0 0;
     }
 
     .lead {
@@ -159,6 +161,7 @@ h1 {
 
   .lead {
     grid-area: lead;
+    z-index: -1;
   }
 
   .bulb {
