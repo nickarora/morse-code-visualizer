@@ -14,10 +14,15 @@ main {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
+  /* temporary */
+  align-items: center;
+  width: 28rem;
+  gap: 1.5rem;
 }
 
-h1 {
-  margin-bottom: 1.5rem;
+button.signal-on {
+  width: fit-content;
 }
 
 .morse-tree {

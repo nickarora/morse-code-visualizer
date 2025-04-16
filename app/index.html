@@ -151,10 +151,30 @@
           <span class="bulb dit"></span>
         </div>
       </div>
+
+      <button class="signal-on" type="button" onmousedown="morseEncoder.signalOn();" onmouseup="morseEncoder.signalOff();">
+        ON
+      </button>
     </main>
   </body>
 
   <script>
     console.log("Morse", Morse)
+
+    const wordsPerMinute = 5
+
+    const morseEncoder = Morse.Encoder.build(wordsPerMinute, {
+      onCharacterChange: (character) => {
+        if (character.isEmpty()) {
+          disableCharacters()
+          return
+        }
+
+        const decodedCharacter = Morse.Decoder.decodeCharacter(character)
+        enableCharacter(decodedCharacter)
+      }
+    })
+
+    window.morseEncoder = morseEncoder
   </script>
 </html>

@@ -1,6 +1,6 @@
 const morseEnabledClass = "on"
 
-function enableElement(decodedCharacter) {
+function enableCharacter(decodedCharacter) {
   const elementID = `morse-element-${decodedCharacter.toLowerCase()}`
 
   const element = document.getElementById(elementID)
@@ -12,7 +12,7 @@ function enableElement(decodedCharacter) {
   element.classList.add(morseEnabledClass)
 }
 
-function disableElements() {
+function disableCharacters() {
   const elements = document.querySelectorAll('[id^="morse-element-"]')
 
   for (element of elements) {
