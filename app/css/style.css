@@ -1,7 +1,13 @@
 :root {
+  --background-color: black;
+  --font-color: white;
+
   font-size: 16px;
   line-height: 1;
   font-family: sans-serif;
+
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 main {
@@ -39,16 +45,13 @@ h1 {
   --bulb-dah-radius: 20%;
   --lead-width: 0.25rem;
   --lead-off-color: darkgrey;
+  --lead-on-color: yellow;
 
   display: grid;
 
   &.root {
     align-items: end;
     justify-content: center;
-
-    .bulb {
-      background-color: var(--lead-off-color);
-    }
   }
 
   /* Specialized adjustment for the root node */
@@ -156,12 +159,10 @@ h1 {
 
   .lead {
     grid-area: lead;
-    background-color: var(--lead-off-color);
   }
 
   .bulb {
     grid-area: bulb;
-    background-color: var(--lead-off-color);
 
     &.dit {
       width: var(--bulb-short);
@@ -181,6 +182,18 @@ h1 {
         width: var(--bulb-short);
         height: var(--bulb-long);
       }
+    }
+  }
+
+  .lead, .bulb {
+    background-color: var(--lead-off-color);
+  }
+
+  &.on {
+    color: var(--lead-on-color);
+
+    .lead, .bulb {
+      background-color: var(--lead-on-color);
     }
   }
 }
