@@ -1,6 +1,6 @@
 import { assert, refute } from "#test/automated/test-init"
 
-import { Duration, Character } from "#controls"
+import { Duration, Character, Word } from "#controls"
 
 import Encoder from "#src/morse/encoder"
 
@@ -8,32 +8,62 @@ describe("Morse", () => {
   describe("Encoder", () => {
     describe("Optional Probe", () => {
       describe("On Word Change", () => {
-        let effect
-        let changedWord
+        describe("Record Character", () => {
+          let effect
+          let changedWord
 
-        const onWordChange = (word) => {
-          effect = "effect"
-          changedWord = word
-        }
+          const onWordChange = (word) => {
+            effect = "effect"
+            changedWord = word
+          }
 
-        const encoder = new Encoder(Duration.example(), {
-          onWordChange
+          const encoder = new Encoder(Duration.example(), {
+            onWordChange
+          })
+
+          const character = Character.example()
+          encoder.currentCharacter = character
+
+          encoder.recordCharacter()
+
+          it("Invokes the callback", () => {
+            refute(!effect)
+          })
+
+          describe("Changed Word", () => {
+            it("Includes the added character", () => {
+              console.log("CHANGED WORD", changedWord)
+              const characters = changedWord.characters()
+
+              assert.deepStrictEqual(characters, [character])
+            })
+          })
         })
 
-        const character = Character.example()
-        encoder.currentCharacter = character
+        describe("On Word Added", () => {
+          let effect
+          let changedWord
 
-        encoder.recordCharacter()
+          const onWordChange = (word) => {
+            effect = "effect"
+            changedWord = word
+          }
 
-        it("Invokes the callback", () => {
-          refute(!effect)
-        })
+          const encoder = new Encoder(Duration.example(), {
+            onWordChange
+          })
 
-        describe("Changed Word", () => {
-          it("Includes the added character", () => {
-            const characters = changedWord.characters()
+          encoder.currentWord = Word.example()
+          encoder.recordWord()
 
-            assert.deepStrictEqual(characters, [character])
+          it("Invokes the callback", () => {
+            refute(!effect)
+          })
+
+          describe("Changed Word", () => {
+            it("Empty word", () => {
+              assert(changedWord.isEmpty())
+            })
           })
         })
       })

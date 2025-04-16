@@ -84,27 +84,39 @@ class Encoder {
   }
 
   recordCharacter() {
-    if (!this.currentCharacter.isEmpty()) {
-      this.currentWord.addCharacter(this.currentCharacter)
+    if (this.currentCharacter.isEmpty()) {
+      return
+    }
 
-      if (this.options.onWordChange) {
-        this.options.onWordChange(this.currentWord)
-      }
+    this.currentWord.addCharacter(this.currentCharacter)
+
+    if (this.options.onWordChange) {
+      this.options.onWordChange(this.currentWord)
     }
 
     this.currentCharacter = new Character()
+
+    if (this.options.onCharacterChange) {
+      this.options.onCharacterChange(this.currentCharacter)
+    }
   }
 
   recordWord() {
-    if (!this.currentWord.isEmpty()) {
-      this.previousWords.push(this.currentWord)
+    if (this.currentWord.isEmpty()) {
+      return
+    }
 
-      if (this.options.onWordAdded) {
-        this.options.onWordAdded(this.previousWords)
-      }
+    this.previousWords.push(this.currentWord)
+
+    if (this.options.onWordAdded) {
+      this.options.onWordAdded(this.previousWords)
     }
 
     this.currentWord = new Word()
+
+    if (this.options.onWordChange) {
+      this.options.onWordChange(this.currentWord)
+    }
   }
 }
 

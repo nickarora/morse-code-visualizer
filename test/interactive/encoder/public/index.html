@@ -106,20 +106,12 @@
         document.querySelector("#current-character-decoded").textContent = MorseDecoder.decodeCharacter(character)
       },
       onWordChange: (word) => {
-        document.querySelector("#current-character").textContent = ''
-        document.querySelector("#current-character-decoded").textContent = ''
-
-        const wordHTML = createWordHTML(word)
-        document.querySelector("#current-word").innerHTML = wordHTML
+        document.querySelector("#current-word").innerHTML = createWordHTML(word)
 
         document.querySelector("#current-word-decoded").textContent = MorseDecoder.decodeWord(word)
       },
       onWordAdded: (words) => {
-        document.querySelector("#current-word").innerHTML = ''
-        document.querySelector("#current-word-decoded").textContent = ''
-
-        const wordsHTML = createWordsHTML(words)
-        document.querySelector("#previous-words").innerHTML = wordsHTML
+        document.querySelector("#previous-words").innerHTML = createWordsHTML(words)
 
         document.querySelector("#previous-words-decoded").textContent = MorseDecoder.decodeWords(words)
       }
