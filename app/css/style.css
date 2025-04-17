@@ -102,130 +102,16 @@ button.signal-on {
 .morse-element {
   display: grid;
 
-  &.root {
-    align-items: end;
-    justify-content: center;
-  }
-
-  /* Specialized adjustment for the root node */
-  &#morse-element-e .lead {
-    width: calc(100% + 0.5rem);
-    transform: translateX(-0.5rem);
-  }
-
-  &.right {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
-
-    grid-template-areas:
-      ".    label"
-      "lead bulb";
-
-    .label {
-      align-self: end;
-      justify-self: center;
-      margin-bottom: 0.25rem;
-    }
-
-    .lead {
-      width: 100%;
-      height: var(--lead-width);
-      align-self: center;
-    }
-
-    .lead, .bulb {
-      background: linear-gradient(to right, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
-    }
-  }
-
-  &.left {
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;
-
-    grid-template-areas:
-      "label .   "
-      "bulb  lead";
-
-    .label {
-      align-self: end;
-      justify-self: center;
-      margin-bottom: 0.25rem;
-    }
-
-    .lead {
-      width: calc(100% + 0.5rem);
-      transform: translateX(0);
-      height: var(--lead-width);
-      align-self: center;
-    }
-
-    .lead, .bulb {
-      background: linear-gradient(to left, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
-    }
-  }
-
-  &.left.down {
-    grid-template-columns: var(--bulb-dimension-long) 1fr;
-    grid-template-rows: 1fr auto;
-
-    grid-template-areas:
-      "lead  .    "
-      "bulb  label";
-
-    .label {
-      align-self: end;
-      justify-self: start;
-      margin: 0 0 0 -0.25rem;
-    }
-
-    .lead {
-      width: var(--lead-width);
-      height: 100%;
-      justify-self: center;
-    }
-
-    .bulb {
-      align-self: end;
-      justify-self: center;
-    }
-
-    .lead, .bulb {
-      background: linear-gradient(to bottom, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
-    }
-  }
-
-  &.right.down {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
-
-    grid-template-areas:
-      ".     lead"
-      "label bulb";
-
-    .label {
-      align-self: end;
-      justify-self: end;
-      margin: 0 0.25rem 0 0;
-    }
-
-    .bulb {
-      align-self: end;
-      justify-self: center;
-    }
-
-    .lead {
-      width: var(--lead-width);
-      height: 100%;
-      justify-self: center;
-    }
-
-    .lead, .bulb {
-      background: linear-gradient(to bottom, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
-    }
-  }
-
   .label {
     grid-area: label;
+  }
+
+  .lead, .bulb {
+    background: linear-gradient(
+      var(--gradient-direction),
+      var(--color-element-on) var(--lead-on-percentage),
+      var(--color-element-off) var(--lead-on-percentage)
+    );
   }
 
   .lead {
@@ -257,8 +143,107 @@ button.signal-on {
     }
   }
 
-  .bulb {
-    background-color: var(--color-element-off);
+  &.right {
+    --gradient-direction: to right;
+
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      ".    label"
+      "lead bulb";
+
+    .label {
+      align-self: end;
+      justify-self: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .lead {
+      width: 100%;
+      height: var(--lead-width);
+      align-self: center;
+    }
+  }
+
+  &.left {
+    --gradient-direction: to left;
+
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      "label .   "
+      "bulb  lead";
+
+    .label {
+      align-self: end;
+      justify-self: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .lead {
+      width: calc(100% + 0.5rem);
+      transform: translateX(0);
+      height: var(--lead-width);
+      align-self: center;
+    }
+  }
+
+  &.left.down {
+    --gradient-direction: to bottom;
+
+    grid-template-columns: var(--bulb-dimension-long) 1fr;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      "lead  .    "
+      "bulb  label";
+
+    .label {
+      align-self: end;
+      justify-self: start;
+      margin: 0 0 0 -0.25rem;
+    }
+
+    .lead {
+      width: var(--lead-width);
+      height: 100%;
+      justify-self: center;
+    }
+
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+  }
+
+  &.right.down {
+    --gradient-direction: to bottom;
+
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+
+    grid-template-areas:
+      ".     lead"
+      "label bulb";
+
+    .label {
+      align-self: end;
+      justify-self: end;
+      margin: 0 0.25rem 0 0;
+    }
+
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+
+    .lead {
+      width: var(--lead-width);
+      height: 100%;
+      justify-self: center;
+    }
   }
 
   &.on {
@@ -271,6 +256,19 @@ button.signal-on {
     .bulb {
       animation: bulbOnAnimation var(--bulb-on-animation-duration) var(--lead-on-animation-duration) forwards;
     }
+  }
+
+  /* Specialized adjustments for the root node */
+  &.root {
+    --gradient-direction: to bottom;
+
+    align-items: end;
+    justify-content: center;
+  }
+
+  &#morse-element-e .lead {
+    width: calc(100% + 0.5rem);
+    transform: translateX(-0.5rem);
   }
 }
 
