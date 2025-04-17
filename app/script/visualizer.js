@@ -18,22 +18,6 @@ function removeClass(element, className) {
   element.classList.remove(className)
 }
 
-function loadAnimationListeners() {
-  const elements = document.querySelectorAll('[id^="morse-element-"]')
-
-  for (element of elements) {
-    element.addEventListener('animationend', (event) => {
-      if (event.animationName === 'elementOffAnimation') {
-        const element = event.target
-        const parent = element.parentElement
-
-        if (element.classList.contains(bulbClass) && parent.classList.contains(morseDisablingClass)) {
-          removeClass(parent, morseDisablingClass)
-        }
-      }
-    })
-  }
-}
 
 function enableCharacter(decodedCharacter) {
   const rootElementID = morseElementID('root')
@@ -55,4 +39,41 @@ function disableCharacters() {
       addClass(element, morseDisablingClass)
     }
   }
+}
+
+function loadAnimationListeners() {
+  const elements = document.querySelectorAll('[id^="morse-element-"]')
+
+  for (element of elements) {
+    element.addEventListener('animationend', (event) => {
+      if (event.animationName === 'elementOffAnimation') {
+        const element = event.target
+        const parent = element.parentElement
+
+        if (element.classList.contains(bulbClass) && parent.classList.contains(morseDisablingClass)) {
+          removeClass(parent, morseDisablingClass)
+        }
+      }
+    })
+  }
+}
+
+function startMorseCodeVisualizer() {
+  loadAnimationListeners()
+
+  const wordsPerMinute = 5
+
+  const morseEncoder = Morse.Encoder.build(wordsPerMinute, {
+    onCharacterChange: (character) => {
+      if (character.isEmpty()) {
+        disableCharacters()
+        return
+      }
+
+      const decodedCharacter = Morse.Decoder.decodeCharacter(character)
+      enableCharacter(decodedCharacter)
+    }
+  })
+
+  return morseEncoder
 }

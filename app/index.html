@@ -159,24 +159,9 @@
   </body>
 
   <script>
-    console.log("Morse", Morse)
+    console.log("Morse Code Visualizer")
 
-    loadAnimationListeners()
-
-    const wordsPerMinute = 5
-
-    const morseEncoder = Morse.Encoder.build(wordsPerMinute, {
-      onCharacterChange: (character) => {
-        if (character.isEmpty()) {
-          disableCharacters()
-          return
-        }
-
-        const decodedCharacter = Morse.Decoder.decodeCharacter(character)
-        enableCharacter(decodedCharacter)
-      }
-    })
-
+    const morseEncoder = startMorseCodeVisualizer()
     window.morseEncoder = morseEncoder
   </script>
 </html>
