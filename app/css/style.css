@@ -17,6 +17,8 @@
 
   --lead-on-animation-duration: 50ms;
   --bulb-on-animation-duration: 25ms;
+  --lead-off-animation-duration: 50ms;
+  --bulb-off-animation-duration: 25ms;
 }
 
 @property --lead-on-percentage {
@@ -103,6 +105,9 @@ button.signal-on {
 }
 
 .morse-element {
+  --color-element-gradient-start: var(--color-element-on);
+  --color-element-gradient-end: var(--color-element-off);
+
   display: grid;
 
   .label {
@@ -112,8 +117,8 @@ button.signal-on {
   .lead, .bulb {
     background: linear-gradient(
       var(--gradient-direction),
-      var(--color-element-on) var(--lead-on-percentage),
-      var(--color-element-off) var(--lead-on-percentage)
+      var(--color-element-gradient-start) var(--lead-on-percentage),
+      var(--color-element-gradient-end) var(--lead-on-percentage)
     );
   }
 
@@ -266,6 +271,31 @@ button.signal-on {
         background: var(--color-element-on);
         box-shadow: 0 0 3rem 0.25rem var(--color-element-on);
       }
+    }
+  }
+
+  &.turning-off {
+    --color-element-gradient-start: var(--color-element-off);
+    --color-element-gradient-end: var(--color-element-on);
+
+    .lead {
+      animation: elementOffAnimation var(--lead-off-animation-duration) forwards;
+    }
+
+    .bulb {
+      animation: elementOffAnimation var(--bulb-off-animation-duration) var(--lead-off-animation-duration) forwards;
+    }
+
+    &[data-element-distance="2"] * {
+      animation-delay: calc(var(--lead-off-animation-duration) + var(--bulb-off-animation-duration));
+    }
+
+    &[data-element-distance="3"] * {
+      animation-delay: calc(2 * var(--lead-off-animation-duration) + var(--bulb-off-animation-duration));
+    }
+
+    &[data-element-distance="4"] * {
+      animation-delay: calc(3 * var(--lead-off-animation-duration) + var(--bulb-off-animation-duration));
     }
   }
 

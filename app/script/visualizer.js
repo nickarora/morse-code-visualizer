@@ -1,4 +1,6 @@
+const bulbClass = "bulb"
 const morseEnabledClass = "on"
+const morseDisablingClass = "turning-off"
 
 function morseElementID(character) {
   return `morse-element-${character.toLowerCase()}`
@@ -16,8 +18,25 @@ function removeClass(element, className) {
   element.classList.remove(className)
 }
 
+function loadAnimationListeners() {
+  const elements = document.querySelectorAll('[id^="morse-element-"]')
+
+  for (element of elements) {
+    element.addEventListener('animationend', (event) => {
+      if (event.animationName === 'elementOffAnimation') {
+        const element = event.target
+        const parent = element.parentElement
+
+        if (element.classList.contains(bulbClass) && parent.classList.contains(morseDisablingClass)) {
+          removeClass(parent, morseDisablingClass)
+        }
+      }
+    })
+  }
+}
+
 function enableCharacter(decodedCharacter) {
-  const rootElementID = morseElementID("root")
+  const rootElementID = morseElementID('root')
   const rootElement = document.getElementById(rootElementID)
 
   const elementID = morseElementID(decodedCharacter)
@@ -31,6 +50,9 @@ function disableCharacters() {
   const elements = document.querySelectorAll('[id^="morse-element-"]')
 
   for (element of elements) {
-    removeClass(element, morseEnabledClass)
+    if (element.classList.contains(morseEnabledClass)) {
+      removeClass(element, morseEnabledClass)
+      addClass(element, morseDisablingClass)
+    }
   }
 }
