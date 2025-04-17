@@ -14,6 +14,47 @@
   --bulb-dah-radius: 20%;
 
   --lead-width: 0.25rem;
+
+  --lead-on-animation-duration: 50ms;
+  --bulb-on-animation-duration: 25ms;
+}
+
+@property --lead-on-percentage {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
+@keyframes leadOnAnimation {
+  from {
+    --lead-on-percentage: 0%;
+  }
+
+  to {
+    --lead-on-percentage: 100%;
+  }
+}
+
+@keyframes bulbOnAnimation {
+  from {
+    --lead-on-percentage: 0%;
+  }
+
+  to {
+    --lead-on-percentage: 100%;
+    box-shadow: 0 0 48px 4px var(--color-element-on);
+  }
+}
+
+@keyframes elementOffAnimation {
+  from {
+    --lead-on-percentage: 0%;
+  }
+
+  to {
+    --lead-on-percentage: 100%;
+    box-shadow: none;
+  }
 }
 
 body {
@@ -91,6 +132,10 @@ button.signal-on {
       height: var(--lead-width);
       align-self: center;
     }
+
+    .lead, .bulb {
+      background: linear-gradient(to right, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
+    }
   }
 
   &.left {
@@ -113,6 +158,10 @@ button.signal-on {
       height: var(--lead-width);
       align-self: center;
     }
+
+    .lead, .bulb {
+      background: linear-gradient(to left, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
+    }
   }
 
   &.left.down {
@@ -122,11 +171,6 @@ button.signal-on {
     grid-template-areas:
       "lead  .    "
       "bulb  label";
-
-    .bulb {
-      align-self: end;
-      justify-self: center;
-    }
 
     .label {
       align-self: end;
@@ -139,6 +183,15 @@ button.signal-on {
       height: 100%;
       justify-self: center;
     }
+
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+
+    .lead, .bulb {
+      background: linear-gradient(to bottom, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
+    }
   }
 
   &.right.down {
@@ -149,21 +202,25 @@ button.signal-on {
       ".     lead"
       "label bulb";
 
-    .bulb {
-      align-self: end;
-      justify-self: center;
-    }
-
     .label {
       align-self: end;
       justify-self: end;
       margin: 0 0.25rem 0 0;
     }
 
+    .bulb {
+      align-self: end;
+      justify-self: center;
+    }
+
     .lead {
       width: var(--lead-width);
       height: 100%;
       justify-self: center;
+    }
+
+    .lead, .bulb {
+      background: linear-gradient(to bottom, var(--color-element-on) var(--lead-on-percentage), var(--color-element-off) var(--lead-on-percentage));
     }
   }
 
@@ -200,10 +257,6 @@ button.signal-on {
     }
   }
 
-  .lead {
-    background-color: var(--color-element-off);
-  }
-
   .bulb {
     background-color: var(--color-element-off);
   }
@@ -211,8 +264,12 @@ button.signal-on {
   &.on {
     color: var(--color-element-on);
 
-    .lead, .bulb {
-      background-color: var(--color-element-on);
+    .lead {
+      animation: leadOnAnimation var(--lead-on-animation-duration) forwards;
+    }
+
+    .bulb {
+      animation: bulbOnAnimation var(--bulb-on-animation-duration) var(--lead-on-animation-duration) forwards;
     }
   }
 }
