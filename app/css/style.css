@@ -42,7 +42,7 @@
 
   to {
     --lead-on-percentage: 100%;
-    box-shadow: 0 0 48px 4px var(--color-element-on);
+    box-shadow: 0 0 3rem 0.25rem var(--color-element-on);
   }
 }
 
@@ -83,6 +83,9 @@ button.signal-on {
 
 .morse-tree {
   display: grid;
+
+  will-change: transform;
+
   width: 24rem;
   height: 24rem;
 
@@ -256,14 +259,24 @@ button.signal-on {
     .bulb {
       animation: bulbOnAnimation var(--bulb-on-animation-duration) var(--lead-on-animation-duration) forwards;
     }
+
+    &.root {
+      .bulb {
+        animation: none;
+        background: var(--color-element-on);
+        box-shadow: 0 0 3rem 0.25rem var(--color-element-on);
+      }
+    }
   }
 
   /* Specialized adjustments for the root node */
   &.root {
-    --gradient-direction: to bottom;
-
     align-items: end;
     justify-content: center;
+
+    .bulb {
+      background: var(--color-element-off);
+    }
   }
 
   &#morse-element-e .lead {
