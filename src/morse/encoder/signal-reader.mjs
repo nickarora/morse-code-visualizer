@@ -15,7 +15,7 @@ class SignalReader {
 
   read(signalDuration) {
     if (signalDuration <= 0) {
-      return ''
+      return null
     }
 
     if (signalDuration <= this.elementDuration) {

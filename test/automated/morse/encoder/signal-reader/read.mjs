@@ -52,7 +52,7 @@ describe("Morse", () => {
           const element = signalReader.read(-1)
 
           it("Empty string", () => {
-            assert.equal(element, '')
+            assert.equal(element, null)
           })
         })
       })

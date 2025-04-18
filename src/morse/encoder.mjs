@@ -72,7 +72,9 @@ class Encoder {
     const signalDuration = this.stopSignalTime - this.startSignalTime
     const element = this.signalReader.read(signalDuration)
 
-    this.appendElement(element)
+    if (element) {
+      this.appendElement(element)
+    }
   }
 
   appendElement(element) {
