@@ -5,14 +5,14 @@ import { Encoder, Time } from "#controls"
 describe("Morse", () => {
   describe("Encoder", () => {
     describe("Signal Off", () => {
-      const encoder = Encoder.example()
-
-      const clockTime = Time.other()
-      encoder.clock.set(clockTime)
-
-      encoder.signalOff()
-
       describe("Stop Signal Time", () => {
+        const encoder = Encoder.example()
+
+        const clockTime = Time.other()
+        encoder.clock.set(clockTime)
+
+        encoder.signalOff()
+
         const stopSignalTime = encoder.stopSignalTime
 
         it("Clock time", () => {
