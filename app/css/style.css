@@ -1,7 +1,8 @@
 :root {
   --font-size: 16px;
+  --font-weight: 400;
   --font-line-height: 1;
-  --font-family: sans-serif;
+  --font-family: "Roboto", sans-serif;
 
   --color-background: #3A5982;
   --color-panel: #416596;
@@ -76,6 +77,7 @@ body {
 
   font-family: var(--font-family);
   font-size: var(--font-size);
+  font-weight: var(--font-weight);
   line-height: var(--font-line-height);
 
   color: var(--color-font);
