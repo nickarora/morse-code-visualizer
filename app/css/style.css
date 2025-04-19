@@ -177,6 +177,10 @@ button.signal-on {
   --color-current-character: var(--color-element-on);
 
   padding: 1rem;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+
   background-color: var(--color-input-background);
   border: 3px solid var(--color-input-border);
   border-radius: 1rem;
