@@ -3,12 +3,12 @@
   --font-line-height: 1;
   --font-family: sans-serif;
 
-  --color-background: black;
-  --color-font: white;
-  --color-element-off: darkgrey;
-  --color-element-on: yellow;
-  --color-signal-button: hsl(345deg 100% 47%);
-  --color-signal-button-icon: white;
+  --color-background: #416596;
+  --color-font: #E6EEF9;
+  --color-element-off: #2F486B;
+  --color-element-on: #f2cc39;
+  --color-signal-button: #769ED2;
+  --color-signal-button-icon: var(--color-font);
 
   --bulb-dimension-short: 1rem;
   --bulb-dimension-long: 2rem;
@@ -73,11 +73,10 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 2rem;
 
   /* temporary */
   align-items: center;
-  width: 28rem;
   gap: 1.5rem;
 }
 
@@ -117,12 +116,10 @@ button.signal-on {
 .morse-tree {
   display: grid;
 
-  will-change: transform;
-
-  width: 24rem;
+  align-self: stretch;
   height: 24rem;
 
-  grid-template-columns: repeat(3, 4fr) 2fr repeat(4, 3fr);
+  grid-template-columns: repeat(3, 4fr) auto repeat(4, 3fr);
   grid-template-rows: repeat(7, 1fr);
 
   grid-template-areas:
@@ -143,6 +140,11 @@ button.signal-on {
 
   .label {
     grid-area: label;
+  }
+
+  &.root {
+    align-items: end;
+    justify-content: center;
   }
 
   .lead, .bulb {
@@ -179,6 +181,13 @@ button.signal-on {
         width: var(--bulb-dimension-short);
         height: var(--bulb-dimension-long);
       }
+    }
+
+    &.root {
+      width: calc(var(--bulb-dimension-short) * 0.5);
+      height: calc(var(--bulb-dimension-long) * 1.25);
+      border-radius: var(--bulb-dah-radius);
+      background: var(--color-element-off);
     }
   }
 
@@ -328,21 +337,6 @@ button.signal-on {
     &[data-element-distance="4"] * {
       animation-delay: calc(3 * var(--lead-off-animation-duration) + var(--bulb-off-animation-duration));
     }
-  }
-
-  /* Specialized adjustments for the root node */
-  &.root {
-    align-items: end;
-    justify-content: center;
-
-    .bulb {
-      background: var(--color-element-off);
-    }
-  }
-
-  &#morse-element-e .lead {
-    width: calc(100% + 0.5rem);
-    transform: translateX(-0.5rem);
   }
 }
 

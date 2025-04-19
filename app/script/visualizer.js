@@ -41,7 +41,7 @@ function disableCharacters() {
   }
 }
 
-function loadAnimationListeners() {
+function addAnimationListeners() {
   const elements = document.querySelectorAll('[id^="morse-element-"]')
 
   for (element of elements) {
@@ -58,8 +58,20 @@ function loadAnimationListeners() {
   }
 }
 
+function addSignalButtonListener(morseEncoder) {
+  const signalButton = document.getElementById("signal-on")
+
+  signalButton.addEventListener('pointerdown', () => {
+    morseEncoder.signalOn()
+  })
+
+  signalButton.addEventListener('pointerup', () => {
+    morseEncoder.signalOff()
+  })
+}
+
 function startMorseCodeVisualizer() {
-  loadAnimationListeners()
+  addAnimationListeners()
 
   const wordsPerMinute = 5
 
@@ -74,6 +86,8 @@ function startMorseCodeVisualizer() {
       enableCharacter(decodedCharacter)
     }
   })
+
+  addSignalButtonListener(morseEncoder)
 
   return morseEncoder
 }
