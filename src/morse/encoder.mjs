@@ -122,6 +122,14 @@ class Encoder {
       this.options.onWordChange(this.currentWord)
     }
   }
+
+  setWordsPerMinute(wordsPerMinute) {
+    const elementDuration = getElementDuration(wordsPerMinute)
+
+    this.elementDuration = elementDuration
+    this.characterDuration = elementDuration * 3
+    this.wordDuration = elementDuration * 7
+  }
 }
 
 export default Encoder
