@@ -3,12 +3,13 @@
   --font-line-height: 1;
   --font-family: sans-serif;
 
-  --color-background: #416596;
-  --color-font: #E6EEF9;
+  --color-background: #3A5982;
+  --color-panel: #416596;
   --color-element-off: #2F486B;
-  --color-element-on: #f2cc39;
-  --color-signal-button: #769ED2;
-  --color-signal-button-icon: var(--color-font);
+  --color-element-on: #F2CC39;
+  --color-button: #769ED2;
+  --color-button-icon: var(--color-font);
+  --color-font: #E6EEF9;
 
   --bulb-dimension-short: 1rem;
   --bulb-dimension-long: 2rem;
@@ -61,7 +62,18 @@
   }
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  padding: 2rem;
+
   font-family: var(--font-family);
   font-size: var(--font-size);
   line-height: var(--font-line-height);
@@ -71,28 +83,59 @@ body {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
 
-  /* temporary */
-  align-items: center;
-  gap: 1.5rem;
+  width: 60ch;
+  max-width: 100%;
+  height: 100%;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.panel {
+  --color-shadow: color-mix(in HSL, var(--color-background) 90%, black);
+
+  background-color: var(--color-panel);
+  border-radius: 1.5rem;
+  z-index: 0;
+
+  box-shadow: -0.25rem 0.25rem var(--color-shadow);
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
 }
 
 button.signal-on {
-  --color-foreground: var(--color-signal-button);
+  --color-foreground: var(--color-button);
   --color-background: color-mix(in HSL, var(--color-foreground) 60%, black);
+  --color-outline: var(--color-button-icon);
   --icon-size: 2rem;
-  --button-radius: 50%;
+  --button-radius: 0.75rem;
 
   padding: 0;
-  color: var(--color-signal-button-icon);
-  background: var(--color-background);
   border: none;
   border-radius: var(--button-radius);
-  outline-offset: 0.25rem;
+  color: var(--color-button-icon);
+  background: var(--color-background);
   cursor: pointer;
+
+  &:focus {
+    outline: 2px solid var(--color-outline);
+    outline-offset: 0.10rem;
+  }
+
+  &:active span {
+    transform: translateY(-2px);
+  }
 
   span {
     display: block;
@@ -106,10 +149,6 @@ button.signal-on {
       width: var(--icon-size);
       height: var(--icon-size);
     }
-  }
-
-  &:active span {
-    transform: translateY(-2px);
   }
 }
 
