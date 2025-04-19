@@ -37,17 +37,14 @@ function addSignalButtonListener(morseEncoder) {
 
   signalButton.addEventListener('pointerdown', signalOn)
   signalButton.addEventListener('pointerup', signalOff)
+  signalButton.addEventListener('pointerleave', signalOff)
 
   signalButton.addEventListener('keydown', (e) => {
-    if (e.key === ' ') {
-      signalOn()
-    }
+    if (e.key === ' ') signalOn()
   })
 
   signalButton.addEventListener('keyup', (e) => {
-    if (e.key === ' ') {
-      signalOff()
-    }
+    if (e.key === ' ') signalOff()
   })
 }
 
