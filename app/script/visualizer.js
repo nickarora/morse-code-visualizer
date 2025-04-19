@@ -68,6 +68,18 @@ function addSignalButtonListener(morseEncoder) {
   signalButton.addEventListener('pointerup', () => {
     morseEncoder.signalOff()
   })
+
+  signalButton.addEventListener('keydown', (e) => {
+    if (e.key === ' ') {
+      morseEncoder.signalOn()
+    }
+  })
+
+  signalButton.addEventListener('keyup', (e) => {
+    if (e.key === ' ') {
+      morseEncoder.signalOff()
+    }
+  })
 }
 
 function startMorseCodeVisualizer() {
