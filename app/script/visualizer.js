@@ -59,6 +59,8 @@ function addAnimationListeners() {
 }
 
 function addSignalButtonListener(morseEncoder) {
+  let spacebarPressed
+
   const signalButton = document.getElementById("signal-on")
 
   signalButton.addEventListener('pointerdown', () => {
@@ -70,13 +72,15 @@ function addSignalButtonListener(morseEncoder) {
   })
 
   signalButton.addEventListener('keydown', (e) => {
-    if (e.key === ' ') {
+    if (e.key === ' ' && !spacebarPressed) {
+      spacebarPressed = true
       morseEncoder.signalOn()
     }
   })
 
   signalButton.addEventListener('keyup', (e) => {
-    if (e.key === ' ') {
+    if (e.key === ' ' && spacebarPressed) {
+      spacebarPressed = false
       morseEncoder.signalOff()
     }
   })
