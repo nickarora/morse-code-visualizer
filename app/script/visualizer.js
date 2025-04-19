@@ -95,16 +95,19 @@ function addSignalButtonListener(morseEncoder) {
 
   signalButton.addEventListener('pointerdown', () => {
     morseEncoder.signalOn()
+    startBeep()
   })
 
   signalButton.addEventListener('pointerup', () => {
     morseEncoder.signalOff()
+    stopBeep()
   })
 
   signalButton.addEventListener('keydown', (e) => {
     if (e.key === ' ' && !spacebarPressed) {
       spacebarPressed = true
       morseEncoder.signalOn()
+      startBeep()
     }
   })
 
@@ -112,6 +115,7 @@ function addSignalButtonListener(morseEncoder) {
     if (e.key === ' ' && spacebarPressed) {
       spacebarPressed = false
       morseEncoder.signalOff()
+      stopBeep()
     }
   })
 }
@@ -119,7 +123,7 @@ function addSignalButtonListener(morseEncoder) {
 function startMorseCodeVisualizer() {
   addAnimationListeners()
 
-  const wordsPerMinute = 5
+  const wordsPerMinute = 7
 
   const morseEncoder = Morse.Encoder.build(wordsPerMinute, {
     onCharacterChange: (character) => {
