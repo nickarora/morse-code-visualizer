@@ -1,8 +1,12 @@
 :root {
   --font-size: 16px;
+  --font-size-large: 32px;
   --font-weight: 400;
-  --font-line-height: 1;
-  --font-family: "Roboto", sans-serif;
+  --font-weight-semibold: 600;
+  --font-line-height: 1.5;
+  --font-line-height-small: 1;
+  --font-family-body: "Roboto", sans-serif;
+  --font-family-header: "Maven Pro", sans-serif;
 
   --color-background: #3A5982;
   --color-panel: #416596;
@@ -75,7 +79,7 @@ body {
   height: 100%;
   padding: 2rem;
 
-  font-family: var(--font-family);
+  font-family: var(--font-family-body);
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   line-height: var(--font-line-height);
@@ -87,46 +91,30 @@ body {
 main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr 3.875rem auto;
 
   width: 60ch;
   max-width: 100%;
   height: 100%;
   padding: 2rem;
-  gap: 1rem;
-}
+  gap: 1.5rem;
 
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
-
-  main {
-    padding: 1.5rem;
-  }
-}
-
-.panel {
-  --color-shadow: color-mix(in HSL, var(--color-background) 90%, black);
-
-  background-color: var(--color-panel);
-  border-radius: 1.5rem;
-  z-index: 0;
-
-  box-shadow: -0.25rem 0.25rem var(--color-shadow);
-}
-
-.no-wrap {
-  white-space: nowrap;
+  overflow: hidden;
 }
 
 h1 {
-  font-family: "Maven Pro", sans-serif;
+  font-family: var(--font-family-header);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-line-height-small);
   font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
   text-transform: uppercase;
   text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 button.signal-on {
@@ -167,11 +155,55 @@ button.signal-on {
   }
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
+.panel {
+  --color-shadow: color-mix(in HSL, var(--color-background) 90%, black);
+
+  background-color: var(--color-panel);
+  border-radius: 1.5rem;
+  z-index: 0;
+
+  box-shadow: -0.25rem 0.25rem var(--color-shadow);
+}
+
+.output {
+  --color-input-border: var(--color-element-off);
+  --color-input-background: #395983;
+  --color-previous-words: #7FA7DB;
+  --color-current-word: var(--color-font);
+  --color-current-character: var(--color-element-on);
+
+  padding: 1rem;
+  background-color: var(--color-input-background);
+  border: 3px solid var(--color-input-border);
+  border-radius: 1rem;
+
+  #previous-words {
+    color: var(--color-previous-words);
+
+    &:not(:empty) {
+      margin-right: 0.5ch;
+    }
+  }
+
+  #current-word {
+    color: var(--color-current-word);
+  }
+
+  #current-character {
+    color: var(--color-current-character);
+  }
+}
+
 .morse-tree {
   display: grid;
-
   align-self: stretch;
+
   height: 24rem;
+  line-height: var(--font-line-height-small);
 
   grid-template-columns: repeat(3, 4fr) auto repeat(4, 3fr);
   grid-template-rows: repeat(7, 1fr);
@@ -422,3 +454,26 @@ button.signal-on {
 #morse-element-y { grid-area: y; }
 #morse-element-z { grid-area: z; }
 
+@media (max-device-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+
+  .output {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-device-height : 748px) {
+  main {
+    grid-template-rows: auto 1fr auto;
+
+    .output {
+      display: none;
+    }
+  }
+}

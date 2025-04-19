@@ -41,6 +41,36 @@ function disableCharacters() {
   }
 }
 
+function updateCurrentCharacter(decodedCharacter) {
+  const element = document.getElementById("current-character")
+
+  if (!element) {
+    return
+  }
+
+  element.textContent = decodedCharacter
+}
+
+function updateCurrentWord(decodedWord) {
+  const element = document.getElementById("current-word")
+
+  if (!element) {
+    return
+  }
+
+  element.textContent = decodedWord
+}
+
+function updatePreviousWords(decodedWords) {
+  const element = document.getElementById("previous-words")
+
+  if (!element) {
+    return
+  }
+
+  element.textContent = decodedWords
+}
+
 function addAnimationListeners() {
   const elements = document.querySelectorAll('[id^="morse-element-"]')
 
@@ -95,11 +125,26 @@ function startMorseCodeVisualizer() {
     onCharacterChange: (character) => {
       if (character.isEmpty()) {
         disableCharacters()
+        updateCurrentCharacter('')
         return
       }
 
       const decodedCharacter = Morse.Decoder.decodeCharacter(character)
       enableCharacter(decodedCharacter)
+      updateCurrentCharacter(decodedCharacter)
+    },
+    onWordChange: (word) => {
+      if (word.isEmpty()) {
+        updateCurrentWord('')
+        return
+      }
+
+      const decodedWord = Morse.Decoder.decodeWord(word)
+      updateCurrentWord(decodedWord)
+    },
+    onWordAdded: (words) => {
+      const decodedWords = Morse.Decoder.decodeWords(words)
+      updatePreviousWords(decodedWords)
     }
   })
 
