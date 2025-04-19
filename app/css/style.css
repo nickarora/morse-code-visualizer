@@ -94,6 +94,16 @@ main {
   gap: 1rem;
 }
 
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1.5rem;
+  }
+}
+
 .panel {
   --color-shadow: color-mix(in HSL, var(--color-background) 90%, black);
 
@@ -104,14 +114,17 @@ main {
   box-shadow: -0.25rem 0.25rem var(--color-shadow);
 }
 
-@media (max-width: 600px) {
-  body {
-    padding: 1rem;
-  }
+.no-wrap {
+  white-space: nowrap;
+}
 
-  main {
-    padding: 1.5rem;
-  }
+h1 {
+  font-family: "Maven Pro", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 button.signal-on {
