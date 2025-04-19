@@ -1,6 +1,4 @@
 # Notes
 
-- Morse Code Visualizer Markup
-  - Title
-  - Tree
-  - Script
+- Handle mouse out events
+- Settings to adjust WPM speed
