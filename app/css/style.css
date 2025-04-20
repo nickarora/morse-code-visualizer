@@ -1,6 +1,5 @@
 :root {
   --font-size: 16px;
-  --font-size-large: 32px;
   --font-weight: 400;
   --font-weight-semibold: 600;
   --font-line-height: 1.5;
@@ -120,6 +119,7 @@ h1 {
   font-family: var(--font-family-header);
   font-weight: var(--font-weight-semibold);
   line-height: var(--font-line-height-small);
+  font-size: 2rem;
   font-optical-sizing: auto;
   text-transform: uppercase;
   text-align: center;
@@ -551,13 +551,19 @@ button.signal-on {
 #morse-element-y { grid-area: y; }
 #morse-element-z { grid-area: z; }
 
-@media (max-device-width: 600px) {
+@media (max-width: 600px) {
   body {
     padding: 1rem;
   }
 
   main {
     padding: 1.5rem;
+
+    &:not(.settings-open) {
+      h1 {
+        margin-top: 0;
+      }
+    }
   }
 
   .output {
@@ -565,7 +571,7 @@ button.signal-on {
   }
 }
 
-@media (max-device-height : 748px) {
+@media (max-width: 600px) and (max-height : 844px) {
   main {
     grid-template-rows: 0 auto 1fr auto;
 
