@@ -68,7 +68,7 @@
 
 html {
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -222,6 +222,7 @@ button.signal-on {
   border-radius: var(--button-radius);
   color: var(--color-button-icon);
   background: var(--color-background);
+  touch-action: none;
   cursor: pointer;
 
   &:focus {

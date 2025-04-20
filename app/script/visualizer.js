@@ -56,7 +56,11 @@ function addSignalButtonListener(morseEncoder) {
 
   const signalButton = document.getElementById("signal-on")
 
-  signalButton.addEventListener('pointerdown', signalOn)
+  signalButton.addEventListener('pointerdown', (e) => {
+    e.target.releasePointerCapture(e.pointerId)
+    signalOn()
+  })
+
   signalButton.addEventListener('pointerup', signalOff)
   signalButton.addEventListener('pointerleave', signalOff)
 
