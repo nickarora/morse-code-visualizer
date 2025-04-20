@@ -10,6 +10,27 @@ function addAnimationListeners() {
   }
 }
 
+function addSettingsListeners(morseEncoder, wordsPerMinute) {
+  const settingsButton = document.getElementById("settings-toggle")
+  const mainElement = document.querySelector("main")
+
+  settingsButton.addEventListener("click", (_e) => {
+    mainElement.classList.toggle("settings-open")
+  })
+  const wordsPerMinuteInput = document.querySelector(".words-per-minute input")
+  wordsPerMinuteInput.value = wordsPerMinute
+
+  const wordsPerMinuteValue = document.querySelector(".words-per-minute .value")
+  wordsPerMinuteValue.textContent = wordsPerMinute
+
+  wordsPerMinuteInput.addEventListener('input', (e) => {
+    const wordsPerMinute = parseInt(e.target.value)
+
+    morseEncoder.setWordsPerMinute(wordsPerMinute)
+    wordsPerMinuteValue.textContent = wordsPerMinute
+  })
+}
+
 function addSignalButtonListener(morseEncoder) {
   let signal = false
 
@@ -78,8 +99,9 @@ function startMorseCodeVisualizer(wordsPerMinute) {
     }
   })
 
-  addSignalButtonListener(morseEncoder)
   addAnimationListeners()
+  addSignalButtonListener(morseEncoder)
+  addSettingsListeners(morseEncoder, wordsPerMinute)
 
   return morseEncoder
 }
