@@ -29,6 +29,14 @@ function addSettingsListeners(morseEncoder, wordsPerMinute) {
     morseEncoder.setWordsPerMinute(wordsPerMinute)
     wordsPerMinuteValue.textContent = wordsPerMinute
   })
+
+  const volumeValue = document.querySelector(".volume .value")
+  const volumeInput = document.querySelector(".volume input")
+  volumeInput.addEventListener('input', (e) => {
+    const volume = parseInt(e.target.value)
+    setVolume(volume)
+    volumeValue.textContent = volume + '%'
+  })
 }
 
 function addSignalButtonListener(morseEncoder) {

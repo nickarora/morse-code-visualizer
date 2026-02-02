@@ -1,5 +1,9 @@
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
+const gainNode = audioCtx.createGain()
+gainNode.connect(audioCtx.destination)
+gainNode.gain.value = 0.5
+
 function isAudioSuspended() {
   return audioCtx.state === 'suspended'
 }
@@ -14,8 +18,7 @@ function createOscillator() {
   const currentTime = audioCtx.currentTime
   oscillator.frequency.setValueAtTime(frequency, currentTime)
 
-  const destination = audioCtx.destination
-  oscillator.connect(destination)
+  oscillator.connect(gainNode)
 
   return oscillator
 }
@@ -42,4 +45,8 @@ function stopBeep() {
   morseOscillator.stop()
   morseOscillator.disconnect()
   morseOscillator = null
+}
+
+function setVolume(value) {
+  gainNode.gain.value = value / 100
 }

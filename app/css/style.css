@@ -92,7 +92,7 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 0 auto 1fr 3.875rem auto;
-  transition: grid-template-rows 300ms;
+  transition: grid-template-rows 150ms;
 
   position: relative;
 
@@ -111,7 +111,7 @@ main {
   }
 
   &.settings-open {
-    grid-template-rows: 3.5rem auto 1fr 3.875rem auto;
+    grid-template-rows: 9rem auto 1fr 3.875rem auto;
   }
 }
 
@@ -150,7 +150,7 @@ h1 {
   flex-direction: column;
   overflow: hidden;
 
-  .words-per-minute {
+  .words-per-minute, .volume {
     display: grid;
     row-gap: 0.5rem;
     column-gap: 1rem;
@@ -172,6 +172,10 @@ h1 {
       grid-area: value;
       text-align: right;
     }
+  }
+
+  .volume {
+    margin-top: 1rem;
   }
 }
 
@@ -581,7 +585,7 @@ button.signal-on {
     }
 
     &.settings-open {
-      grid-template-rows: 3.5rem auto 1fr auto;
+      grid-template-rows: 9rem auto 1fr auto;
     }
   }
 }
